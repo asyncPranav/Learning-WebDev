@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Position</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color: salmon;
+        }
+        .one{
+            border: 2px solid black;
+        }
+        
+        .two{
+            margin-top: 30px;
+            border: 2px solid black;
+        }
+        
+        .two div{
+            position: relative;
+            left: 100px;
+            top: -100px;
+        }
+
+        .three{
+            margin-top: 30px;
+            border: 2px solid black;
+        }
+
+        .three div{
+            position: absolute; /* element is removed from the normal document flow -> positioned relative to the nearest positioned ancestor (with relative, absolute, or fixed), instead of positioned relative to the viewport, like fixed */
+            top: 10px;
+            left: 300px;
+        }
+
+        .four{
+            margin-top: 30px;
+            border: 2px solid black;
+        }
+
+        .four div{
+            position: fixed;  /* element is removed from the normal document flow -> positioned relative to the viewport*/
+            left: 20px;
+            top: 450px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="one">
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, eius.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, eius.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, eius.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, eius.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, eius.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, eius.
+        </p>
+        <div class="box"><h1>1</h1></div>
+    </div>
+    
+    <div class="two">
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, eius.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, eius.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, eius.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, eius.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, eius.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, eius.
+        </p>
+        <div class="box"><h1>2</h1></div>
+    </div>
+    
+    <div class="three">
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, eius.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, eius.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, eius.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, eius.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, eius.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, eius.
+        </p>
+        <div class="box"><h1>3</h1></div>
+    </div>
+    
+    <div class="four">
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, eius.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, eius.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, eius.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, eius.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, eius.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, eius.
+        </p>
+        <div class="box"><h1>4</h1></div>
+    </div>
+</body>
+</html>

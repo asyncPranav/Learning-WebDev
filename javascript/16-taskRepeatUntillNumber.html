@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Create a function readNumber which prompts for a number 
+    until the visitor enters a valid numeric value.
+    The resulting value must be returned as a number.
+    The visitor can also stop the process by entering an empty line or pressing “CANCEL”. 
+    In that case, the function should return null. -->
+
+    <script>
+        function readNumber() {
+            let num;
+
+            do {
+                num = prompt("Enter a number please?");
+            } while( !isFinite(num) );
+
+            // Exit if user presses Cancel or enters an empty line
+            if (num === null || num === '') return null;
+
+            // Return the number (converted from string)
+            return +num;
+        }
+        alert(`Read: ${readNumber()}`);
+
+        
+        /*
+            function readNumber() {
+                while (true) {
+                    let input = prompt("Enter a number:");
+                    
+                    // If the user presses Cancel or enters an empty string
+                    if (input === null || input.trim() === "") return null;
+                    
+                    let num = Number(input);
+                    
+                    // Check if input is a valid finite number
+                    if (!isNaN(num)) return num;
+                }
+            }
+            alert(`Read: ${readNumber()}`);
+        */
+    </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--     
+        🟢 2. Find Maximum
+            Write a function maxInput() that:
+            Takes multiple number inputs from the user until a non-numeric, empty string, or "Cancel" is entered.
+            Returns the maximum number from the array.
+     -->
+
+    <script>
+
+        function maxInput() {
+            let max = Number.MIN_VALUE;
+
+            while(true) {
+                let n = prompt("Enter a number");
+                
+                // ERROR: n.trim() caused an error when user pressed Cancel (n was null).
+                // FIX: Check if n === null before calling trim() to avoid calling method on null.
+                if (n === null || n.trim() === "" || !isFinite(n)) break;
+
+                //max = (max < n) ? n : max;
+                max = Math.max(max, n);
+                
+            }
+            return max;
+        }
+        
+        // or
+
+        let arr = [];
+        function maxElement() {
+            let arr = [];
+            while(true) {
+                let n = prompt("Enter a number");
+                
+                // ERROR: n.trim() caused an error when user pressed Cancel (n was null).
+                // FIX: Check if n === null before calling trim() to avoid calling method on null.
+                if (n === null || n.trim() === "" || !isFinite(n)) break;
+
+                arr.push(+n);                
+            }
+
+            if (arr.length === 0) return "No Number Entered !!";
+
+            let max = Math.max(...arr);
+            let index = arr.indexOf(max);
+            return `Max: ${max} at position ${index + 1}`;
+
+        }
+
+        alert( maxInput() );
+        
+        alert( maxElement() );
+        
+    </script>
+</body>
+</html>

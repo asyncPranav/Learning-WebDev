@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        🟡 3. Count Even and Odd Numbers
+            Write a function countEvenOdd() that:
+            Accepts numbers using prompt.
+            Stops on invalid input.
+            Returns how many even and how many odd numbers were entered.
+    -->
+
+    <script>
+        function countEvenOdd() {
+            let even = 0;
+            let odd = 0;
+
+            while(true) {
+                let n = prompt("Enter a number");
+
+                if( !n || isNaN(n)) break;
+
+                if( +n % 2 === 0 ) even++;
+                else odd++;
+            }
+
+            return `Even : ${even}, Odd : ${odd}`;
+        }
+        
+        alert( countEvenOdd() );
+
+        
+    </script>
+</body>
+</html>

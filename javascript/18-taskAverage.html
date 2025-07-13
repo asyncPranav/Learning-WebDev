@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        🟢 1. Average of Numbers
+            Write a function averageInput() that:
+            Takes numbers from the user until a non-numeric, empty string, or "Cancel" is entered.
+            Then returns the average of all numbers entered. 
+    -->
+
+
+    <script>
+        function averageInput() {
+            let sum = 0;
+            let inputs = 0;
+
+            while(true) {
+                let n = prompt("Enter a number");
+                
+                // ERROR: n.trim() caused an error when user pressed Cancel (n was null).
+                // FIX: Check if n === null before calling trim() to avoid calling method on null.
+                if (n === null || n.trim() === "" || !isFinite(n)) break;
+
+                sum += Number(n);
+                inputs++;
+            }
+
+            return sum / inputs;
+        }
+
+        alert( averageInput() )
+
+    </script>
+</body>
+</html>

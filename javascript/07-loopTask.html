@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loop Task</title>
+</head>
+<body>
+    <script>
+        // Outer : while(true){
+        //     let ask = prompt("Enter number > 100");
+        //     if(+ask > 100 || !ask) break;
+        //     else continue Outer;
+        // }
+        // alert("End ...");
+
+        let ask = true;
+        do{
+            ask = prompt("Enter number > 100");
+        }while(+ask <= 100 && ask);
+    </script>
+</body>
+</html>

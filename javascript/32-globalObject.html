@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            🌍 What is the Global Object?
+
+                The global object is a special object that is available everywhere in your JavaScript code.
+                It provides access to built-in functions, global variables, and environment-specific features.
+
+
+            📌 Global Object Names (by Environment)
+
+                | Environment                  | Global Object Name |
+                | ---------------------------- | ------------------ |
+                | Browser                      |   window           |
+                | Node.js                      |   global           |
+                | Modern JS (all environments) |   globalThis       |
+
+
+
+            💡 Why globalThis?
+
+                To standardize the global object across all environments (browsers, Node.js, Deno, etc.), JavaScript introduced:
+                globalThis : This works everywhere, unlike window or global, which are environment-specific.
+
+        */
+
+        
+        alert("Pranav");
+        // is same as
+        window.alert("Pranav");
+
+
+        // In a browser, global functions and variables declared with var (not let/const!) become the property of the global object:
+        var gVar = 5;
+        alert(window.gVar); // 5 (became a property of the global object)
+
+        /*
+            Function declarations have the same effect (statements with function keyword in 
+            the main code flow, not function expressions).
+
+            Please don’t rely on that! This behavior exists for compatibility reasons. 
+            Modern scripts use JavaScript modules where such a thing doesn’t happen.
+        */
+
+
+        // If we used let instead, such thing wouldn’t happen:
+        let gLet = 5;
+        alert(window.gLet); // undefined (doesn't become a property of the global object)
+
+
+        
+        // If a value is so important that you’d like to make it available globally, write it directly as a property:
+        // make current user information global, to let all scripts access it
+        window.currentUser = {
+            name: "John"
+        };
+
+        // somewhere else in code
+        alert(currentUser.name);  // John
+
+        // or, if we have a local variable with the name "currentUser"
+        // get it from window explicitly (safe!)
+        alert(window.currentUser.name); // John
+
+
+
+
+
+        //--------------> Using for polyfills
+
+        /*
+            We use the global object to test for support of modern language features.
+
+            For instance, test if a built-in Promise object exists (it doesn’t in really old browsers):
+        */
+
+        if (!window.Promise) {
+            alert("Your browser is really old!");
+        }
+
+    </script>
+</body>
+</html>

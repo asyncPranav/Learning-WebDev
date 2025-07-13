@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Js Fundamental Practical use</title>
+</head>
+<body>
+    <script>
+
+        let name = prompt("What is your name ??") ?? "Anonymous";
+        let tasks = +prompt("How many tasks have you done today ??");
+        let taskList = "";
+        if(!tasks){
+            alert("Set atleast a goal daily !!");
+        }else{
+            for(let i=0; i<tasks; i++){
+                let taskName = prompt(`tell your task no. ${i+1} that you have done`);
+                taskList += `${taskName} \n`;
+            }
+        }
+
+        let mood = prompt("How is your mood - Happy, Normal, Sad ??");
+        
+        alert(`Hello ${name}`);
+        alert("Your Tasks Today:\n\n" + taskList);
+        
+        mood = mood.toLowerCase();
+        switch(mood){
+            case "happy":
+                alert("NICE !! , you should always be happy");
+                break;    
+            case "normal":
+                alert("OKKAY !! , try to cheer up buddy");
+                break;
+            case "sad":
+                alert("AHHH !! , its ok to have off days");
+                break;
+            default:
+                alert("Invalid mood entered");
+                break;
+        }
+        
+        alert("Stay Strong !!");
+
+
+
+    </script>
+</body>
+</html>

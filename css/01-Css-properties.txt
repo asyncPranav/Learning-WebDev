@@ -1,0 +1,568 @@
+overflow : hidden , scroll , auto , visible(def)
+
+==============================================================================================================================
+
+float : right , left , none 
+clear : right , left , both
+
+================================================================================================================================
+
+font-size : xx-small, x-small, small, medium, large, x-large, xx-large, 15px, 100%, 1em;
+font-family : arial, helvetica, cursive, compact etc;
+line-height : 25px, 2em;
+font-weight : bold, bolder, normal, lighter, light, 100-900;
+font-style : normal, italic, oblique
+font-variant : normal, small-caps;
+
+===============================================================================================================================
+
+
+text-align : left , right , center , justify
+text-align-last : left , right , center , start , end , auto 
+text-transform : uppercase , lowercase 
+text-indent : 100px
+word-spacing : 20px 
+letter-spacing : 10px 
+
+==============================================================================================================================
+
+text-decoration-line : underline , overline , line-through , none
+text-decoration-style : solid , dashed , dotted , double , wavy 
+text-decoration-colour : red 
+text-decoration : underline solid red ;
+
+==============================================================================================================================
+
+word-wrap : break-word , normal(def)
+word-break : break-all , keep-all(def)
+
+==============================================================================================================================
+
+box-shadow : 5px 5px 10px 10px black , -5px -5px 10px 10px black , 5px 5px 10px 10px black inset 
+text-shadow : 5px 5px 10px black , -5px -5px 10px black 
+
+==============================================================================================================================
+
+white-space : normal , nowrap , pre , pre-line , pre-wrap
+
+==============================================================================================================================
+
+text-overflow : clip(default) , ellipsis , string
+
+==============================================================================================================================
+
+writing-mode : horizontal-tb , vertical-rl , vertical-lr , sideways-rl , sideways-lr
+
+==============================================================================================================================
+
+column-count: 2 , 3 , 4 .........
+column-gap : 20px 2em 
+column-rule-width : 2px 
+column-rule-style : solid , dotted , dashed , double , groove 
+column-rule-color : red
+{ column-rule : 2px solid red  }
+column-width : 140px , 90px  { use without column-count }
+column-span : all , none 
+
+==============================================================================================================================
+
+@font-face {
+  font-family : myFirstFont;
+  src : url("open_sans.woff);
+  
+==============================================================================================================================
+
+" font.google.com " se font select karo fir uski url copy krke head tag ke andar pastw kar do 
+jaha se url copy kiya h , wahi font-family given hogi use copy krke use kro heading or paragraphs me 
+
+==============================================================================================================================
+
+list-style-type : for ul = circle , disc , square , none
+                  for ol : upper-alpha , lower-alpha , upper-roman , lower-roman , decimal , none 
+list-style-position : inside , outside
+list-style-image : url("arrow.png");  ==>16px png img from iconfinder.com
+{ list-style : none inside url("arrow.png"); }
+
+==============================================================================================================================
+
+background-image : url("img/flower.jpg");
+background-repeat : repeat , no-repeat , repeat-x , repeat-y , space , round 
+background-position : left top , left center , left bottom , right top , right center , right bottom , center top , center center ( center ) , center bottom , x% y% , Xpx Ypx 
+background-attachment : fixed , scroll (default)
+background-size : auto(default) , Xpx Ypx , X% Y% , cover , contain 
+background-origin : padding-box(def) , content-box , border-box
+background-clip : padding-box , border-box(def) , content-box , text ( with prefix only , set backg to h1 then colour transparent then -webkit-back-clip : text; )
+background-color : name , hex , rgb , rgba , hsl , hsla
+background-image : linear-gradient( red , yellow ) or  linear-gradient(45deg, red , yellow , green )
+                 : repeated-linear-gradient(to right, red , yellow 20%, green 30%)
+                 : radial-gradient(green, red , yellow ) or radial-gradient(green 10%, red , yellow 30%) or radial-gradient(circle, green 10%, red , yellow 30%)
+                 : radial-gradient(closest-side at 50% 50%, green, red , yellow ) or radial-gradient(closest-side at 80% 50%, green, red , yellow )
+                 : radial-gradient(farthest-side at 50% 50%, green, red , yellow ) or radial-gradient(farthest-side at 80% 20%, green, red , yellow )
+                 : radial-gradient(closest-corner at 50% 50%, green, red , yellow ) or radial-gradient(closest-corner at 10% 10%, green, red , yellow )
+                 : radial-gradient(farthest-corner at 50% 50%, green, red , yellow ) or radial-gradient(farthest-corner at 10% 10%, green, red , yellow )
+                 : repeating-radial-gradient(green 10%, red , yellow 30%) or repeating-radial-gradient(circle, green 10%, red , yellow 30%) 
+background-blend-mode : watch tutorial
+mix-blend-mode " watch tutorial
+
+==============================================================================================================================
+
+opacity : 0(invisible) to 1(visible)
+opacity makes everything transparent within div , but rgba applies transparentcy only to tha background colour
+
+==============================================================================================================================
+
+display : none , inline , block , inline-block , list-style 
+
+==============================================================================================================================
+
+visibility : visible(def) , Hidden , Collapse ( only for table )
+
+==============================================================================================================================
+
+position : static(def) , relative , absolute , fixed , sticky
+position ke sath left , right  se koi ek aur top , bottom se koi ek prop dena important h => tabhi position property work kregi
+
+==============================================================================================================================
+
+z-index : -3, -2, -1, 0, 1, 2, 3 ..........
+( always work with position property )
+
+==============================================================================================================================
+
+@media screen and (max-width: 900px) {
+  .container {
+    width: 50%;
+  }
+}
+
+==============================================================================================================================
+
+resize : horizontal , vertical , both , none (def)
+( always work with overflow , ex = overflow: auto; ) 
+HTML tag "textarea" has default resize property
+
+==============================================================================================================================
+
+*{
+  --pColor: red;
+  --b1color: blue;
+ }
+p {
+   color: var(--pColor);
+  }
+h1 {
+   color: var(--b1color);
+  }
+
+==============================================================================================================================
+
+calc : (100% - 20px) , (100vh -30px) , (100% - 2em);
+
+=============================================================================================================================================================================================
+
+clip-path : circle(radius at Xcord Ycord) => circle(300px at 50% 50%);
+          : ellipse(horRadius verRadius at Xcord Ycord) => ellipse(30% 35% at 50% 50%);
+          : inset(top right bottom left) => inset(5% 20% 15% 25%);
+          : polygon(X and Y cord of 1st point, X and Y cord of 2nd point, X and Y cord of 3rd point, ......) => polygon(50% 0%, 100% 0%, 0% 100%); => points are in order top, right, bottom, left
+( Xcord is from Left and Ycord is from Top ) 
+
+
+=============================================================================================================================================================================================
+
+shape-outside : circle(radius at Xcord Ycord) => circle(300px at 50% 50%);
+              : ellipse(horRadius verRadius at Xcord Ycord) => ellipse(30% 35% at 50% 50%);
+              : inset(top right bottom left) => inset(5% 20% 15% 25%);
+              : polygon(X and Y cord of 1st point, X and Y cord of 2nd point, X and Y cord of 3rd point, ......) => polygon(50% 0%, 100% 0%, 0% 100%); => points are in order top, right, bottom, left
+( Xcord is from Left and Ycord is from Top ) 
+shape-margin : 20px;
+
+=============================================================================================================================================================================================
+
+filter : none(def) , blur() , brightness() , saturate() , contranst() , drop-shadow() , grayscale() , hue-rotate() , invert() , opacity() , sepia() , url()
+
+=============================================================================================================================================================================================
+
+transition-property : width or width , height;
+transition-duration : 3s or 3s , 4s;
+transition-timing-function : ease , linear , ease-in , ease-out , ease-in-out , step-start , step-end , step(5, start) , step(4, end) , cubic-bezier(0.2,0.5,1.0,0.1);
+transition-delay : 1s; 
+ ( transition : width 3s linear 1s; )
+ ( transition : all 3s; )
+
+
+
+==============> TRANSFORM-2D <===============================================================================================================================================================================================================================================================
+transform : none(def) , rotate(angle) , skew(Xdeg,Ydeg) , skewX(angle) , skewY(angle) , translate(x,y) , translateX(x) , translateY(y) , scale(x,y) , scaleX(x) , scaleY(y) ,  matrix(n,n,n,n,n,n) => matrix( scaleX(),skewY(),skewX(),scaleY(),translateX(),translateY() );
+  > Also you can use two or more transform value simultaneously
+transform : rotate(30deg) , scale(1.5);
+ 
+transform-origin : (X-value Y-value) => left top , left center, left bottom , right top , right center , right bottom , center center , 50px 100px , 100% 50% 
+  > transform-origin shift origin from center to the desirable point 
+
+
+===================>TRANSFORM-3D <==============================================================================================================================================================================================================
+transform : rotateX(angle), rotateY(angle), rotateZ(angle), rotate3d(x,y,z,angle), translateZ(z), translate3d(x,y,z), scaleZ(z), scale3d(x,y,z), perspective(300px), matrix3d(n,n,n,n,n,nn,n,n,n,nn,n,n,n,n,n,n,n,n), none(default);
+
+perspective : watch tutorial
+perspective-origin : watch tutorial
+
+transform-style : flat(default) , preserve-3d;
+
+
+backface-visiability : visible(def) , hidden
+  > This property always work with the transform.
+ 
+=======================================================================================================================================================================================================================================
+
+animation-name : example;
+animation-duration : 2s , 3s , 20s;
+animation-timing-function : ease , ease-in , ease-out , ease-in-out , linear , step-start or steps(1,start) , step-end or starts(1,end) , steps(#, start/end)=>steps(4,end) , cubic-benzier(0.1,0.4,1.0,0.1) 
+animation-delay : 1s , 3s , 7s .............
+animation-iteration-count : 1 , 10 , 20 , infinite 
+animation-direction : normal , reverse , alternate , alternate-reverse
+  ( animation : animation-name animation-duration animation-timing-function animation-delay animation-iteration-count animation-direction  )
+animation-fill-mode : none(def) , forward , backward , both
+animation-play-state : paused , running 
+
+@keyframes example {
+    from { border-radius : 0%; }
+    to { border-radius : 50%;
+         background : tomato 
+         color : white }
+  }
+
+@keyframes example {
+    0% { css properties }
+    50% { css properties }
+    100% { css properties }
+}
+
+
+==============================================================================================================================
+
+
+object-fit : fill , contain , cover , scale-down , none 
+object-position : top , right , bottom , left , center(def) 
+
+==============================================================================================================================
+
+user-select : auto(def) , none , text , all
+
+==============================================================================================================================
+
+box-decoration-break : slice(def) , clone
+
+==============================================================================================================================
+
+quotes : "$" "&"; or "<" ">" "/" "\";
+  > work only with HTML quotation tag i.e <q> text </q>
+  
+==============================================================================================================================
+  
+border-image-source : url("images/flower.jpg")
+border-image-slice : 20px or 20; 
+border-image-width : 15px; 
+border-image-outset : 20px; => (it is offset)
+border-image-repeat : repeat , stretch , round , space 
+                    : repear streach (horz vert) , 
+  ( border-image : source slice width outset repeat ) => agar ek numerical value ke baad koi aur numerical value aati h to unke bich slash (/) dala jayega . Agar ek numerical value h aur dusri string value h to unke bich space diya jayega .
+  => { border-image : url(flower.jpg) 21 / 15px / 20px round; }
+  => you can also use linear gradient in border image 
+  => Google - Border image generator (mozilla)
+  
+  
+  
+===============> SIMPLE SELECTORS <=================================================================================
+
+  =>> Type Selector
+    p { color : red; }
+    
+  =>> Class Selector
+    .head { color : green }
+    
+  =>> ID Selector
+    #box { color : blue; }
+    
+  =>> Universal Selectorl
+    *{ color : yellow; }
+    #Box *{ color : yellow; }
+  
+  
+============> COMBINATORS SELECTORS <===============================================================================
+
+  =>> Descendant selector
+    .box p { color : red; }
+    p span { color : green; }
+    div p span { color : blue; }
+    
+  =>> Direct child selector
+    ul > li { color : red; }
+    #Box > p {color : green; }
+    
+  =>> Adjacent sibling selector
+    div + p { color : red; }
+    ul + p { color : green; }
+    
+  =>> General sibling selector 
+    div ~ p { color : red; }
+    ul ~ p { color : green; }
+
+===============> ATTRIBUTE SELECTORS <=================================================================================
+
+  ==>> A[attr] - Element with specific attributes
+    img[alt] { border : 2px solid red; }
+    img[title] { border : 2px solid green; }
+    a[target] { color : gold; }
+    
+  ==>> A[attr=val] - Attribute whose value is exactly as selected
+    input[type="text"] { border : 2px solid black; }
+    input[type="password"] { border : 2px solid crimson; }
+    img[title="flower"] { border : 2ps solid gold; }
+    img[alt="image of cat"] { border : 2px solid red; }
+   
+  ==>> A[attr^=val] - Attribute begin with value 
+    img[alt="image"] { border : 2px solid red; }  --> Does not work because there is no img tag with exact value of alt = image 
+    img[alt=^"image"] { border : 2px solid red; } --> It will work because value of alt begin with 'image' ( alt="image of cat" )
+   
+  ==>> A[attr|=val] - Attribute begins with value AND is first in a dash separated list 
+    img[alt=^"image"] { border : 2px solid red; } --> It will work because value of alt begin with 'image' ( alt="image of cat" )
+    img[alt|="image"] { border : 2px solid red; } --> it will work only when selected attr begin with given value and must have hyphen at the end of begining value ( alt="image- of cat" )
+   
+  ==>> A[attr$=val] - Attribute end with value 
+    img[alt$="cat"] { border : 2px solid red; } --> ( alt="image of cat" )
+    a[href$=".png"] { color : red } --> ( <a href="flower.png">Click me</a> )
+   
+  ==>> A[attr*=val] - value occurs anywhere in attribute
+    img[alt*="of"] { border : 2px solid red; } --> It will work ( alt="image of cat )
+    img[alt*="of"] { border : 2px solid red; } --> It will still work bcoz "of" is present in attr value ( alt="imageof cat )
+    img[alt*="cat"] { border : 2px solid green; } --> It will work ( alt="image of cat )
+   
+  ==>> A[attr~=val] - value occurs anywhere in attr but must be saparated by space 
+    img[alt~="of"] { border : 2px solid red; } --> It will not work bcoz "of" has no space around it ( alt="imageof cat )
+    img[alt~="of"] { border : 2px solid red; } --> It will work bcoz "of" is present in attr value and  has space around it ( alt="image of cat )
+    img[alt~="cat"] { border : 2px solid green; } --> It will work bcoz "cat" is present and has space around it ( alt="image of cat )
+
+==========> PSEUDO-CLASSES & PSEUDO-ELEMENTS <=========================================================================
+  
+  :first-child
+  :last-child
+  :nth-child()
+  :nth-last-child()
+  :nth-of-type()
+  :nth-last-of-type()
+  :only-child()
+  :only-of-type()
+  :first-of-type()
+  :last-of-type()
+  :empty
+  :not()
+  :lang()
+  :link
+  :hover
+  :visited
+  :active
+  :target
+  :focus
+  :checked
+  :disabled
+  :enabled
+  :required
+  :optional
+  :in-range
+  :out-of-range
+  :read-only
+  :read-write
+  :valid
+  :invalid
+  :default
+  :root
+  
+  ::after
+  ::before
+  ::first-letter
+  ::first-line
+  ::selection
+  ::placeholder
+  
+==============================================================================================================================
+  
+  
+attr() : watch tutorial
+  
+==============================================================================================================================
+ 
+👇👇 WATCH TUTORIAL 👇👇
+counter-reset => body { counter-reset: my-counter 0; }
+counter() => h2::before { content: 'chapter ' counter(my-counter) ' : '; }   OR
+          => h2::before { content: 'chapter ' counter(my-counter , upper-alpha) ' : '; }
+          => h2::before { content: 'chapter ' counter(my-counter , upper-roman) ' : '; }
+counter-increment => h2::before { counter-increment : my-counter 1; }
+  
+==============================================================================================================================
+
+caret-color : auto(def) , transparent , red;
+
+==============================================================================================================================
+
+@import "navigation.css";
+@import url("www.redxcyber.com/navigation.css");
+@import url("navigation.css") print;
+@import url("navigation.css") screen and max-width(1020px);
+
+==============================================================================================================================
+
+search font icon then open fontawesome.com or any other similar website
+click on 'for the web' and u can download
+or click on how to use and use thier link in head tag 
+
+
+======>New Pseudo Elements for scrollbar styling<====================================================
+
+::scrollbar
+::scrollbar-thumb     { used with prefix -webkit- }
+::scrollbar-track
+::scrollbar-corner
+
+👇👇 How to use 👇👇 
+<div id="test">
+  dummy large para 
+</div>
+
+#test {
+  width : 50%;
+  height : 500px;
+  overflow : auto;
+  border : 2px solid black
+}
+
+#test::-webkit-scrollbar {
+  width: 10px;
+  background: grey;
+}
+
+#test::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background: deepskyblue;
+}
+
+#test::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: crimson or linear-gradient;
+}
+
+#test::-webkit-scrollbar-corner {  ---> not important
+  background: green;
+}
+
+==============================================================================================================================
+
+display : flow-root; --> used to resolve the problem of float property ( as clear do )
+=> this property is used on parent element
+
+====================> FLEXBOX <==================================================================================================================
+display : flex;  ( apply on container )
+
+----->->> Flex container's property
+
+  flex-direction : row(def) , row-reverse , column , column-reverse 
+    => ( row-reverse main axis ki direction ko reverse kar deta hain )
+   
+  flex-wrap : wrap , wrap-reverse , nowrap(def) 
+    => ( if you have given width to the flex items then width of the flex item will not be applied as given in css code , to solve this problem we use flex-wrap) 
+    =>  ( wrap-reverse cross axis ki direction ko reverse kar deta hain )
+   
+  justify-content : flex-start , flex-end , center , space-between , space-around , space-evenly 
+    => ( it align items along main axis )
+    => ( it works along main axis , flex-start me items main-start se shuru hote , flex-end me items main-end se shuru hote )
+    
+  align-items : stretch(def) , flex-start , flex-end , center 
+    => ( it works along cross axis )
+    
+  flex-flow: flex-direction flex-wrap;
+  
+  
+------->-->> Flex item's property
+   
+  align-self : flex-start , flex-end , center , stretch
+    => ( this prop is used on particular flex item , it override the prop align-item along cross axis )
+    
+  order : 0(def) , 1 , 2 , 3 ..........
+    => ( this prop is used on particular flex item , it changes order of flex items along flex-direction's prop )
+    
+  flex-basis : 400px , 30em;  
+    => ( it works with flex-wrap )
+    => ( it is initial length of flex items along main axis )
+    => ( if flex-direction: row; then flex-basis works like width but if flex-direction: column; then flex-basis works like height )
+    => ( flex-basis override width and height of flex items if both are given simultaneously )
+    
+  flex-grow : 0(def) , 1 , 2 , 3 .......
+    => ( it increases width of the flex items to cover empy space along main axis)
+    => ( more value of flex-grow means more increase in width/size of flex item )
+    
+  flex-shrink : 0(def) , 1 , 2 , 3 ........
+    => ( if width of container is less than total addition of width of all flex items then flex items shrinks on thier own to fit in the container )
+    => ( we can control how flex items get shrink using prop flex-shrink )
+    => ( more value of flex-shrink means more shrink of flex item )
+    
+  flex : flex-grow flex-shrink flex-basis;
+  flex : 1 2 500px;
+  
+  
+  
+  
+  
+  
+  
+  
+==============================================================================================================================
+
+
+==============================================================================================================================
+
+
+==============================================================================================================================
+
+
+==============================================================================================================================
+
+
+==============================================================================================================================
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

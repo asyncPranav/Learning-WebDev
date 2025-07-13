@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Gradient</title>
+    <style>
+        div{
+            width: 400px;
+            height: 400px;
+            margin: auto;
+            border: 2px solid black;
+            margin-top: 30px;
+        }
+
+        .one{
+            background-image: linear-gradient(60deg, crimson, gold);
+        }
+
+        .two{
+            /* background-image: repeating-linear-gradient(to right, crimson , gold 30%, lightgreen 20%); */
+
+            /* Percentages in gradients must increase: each stop must come after the previous one */
+
+            background-image: repeating-linear-gradient(to right, crimson , gold 10%, lightgreen 20%);
+        }
+
+        .three{
+            background-image: radial-gradient(crimson, gold, lightgreen);
+        }
+
+        .four{
+            background-image: radial-gradient(circle, green 10%, red 20%, yellow 60%)
+        }
+        
+        .five{
+            background-image: radial-gradient(closest-side at 70% 50%, green, red , yellow);
+        }
+
+        .six{
+            background-image: radial-gradient(farthest-side at 70% 50%, green, red , yellow);
+        }
+
+        .seven{
+            background-image: repeating-radial-gradient(green 10%, red , yellow 30%);
+        }
+    </style>
+</head>
+<body>
+    <div class="one"><h1>1</h1></div>
+
+    <div class="two"><h1>2</h1></div>
+    
+    <div class="three"><h1>3</h1></div>
+    
+    <div class="four"><h1>4</h1></div>
+    
+    <div class="five"><h1>5</h1></div>
+    
+    <div class="six"><h1>6</h1></div>
+    
+    <div class="seven"><h1>7</h1></div>
+</body>
+</html>

@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date and Time</title>
+</head>
+
+<body>
+    <script>
+        //--------------> Date and time
+
+        /*
+            Let’s meet a new built-in object: Date. It stores the date, time and 
+            provides methods for date/time management.
+        
+            For instance, we can use it to store creation/modification times, to measure time, 
+            or just to print out the current date.
+        */
+
+
+
+
+        //---------------> Creation
+
+        /*
+            To create a new Date object call new Date() with one of the following arguments:
+        */
+
+
+
+
+        // 1. new Date()
+
+        /*
+            Without arguments – create a Date object for the current date and time:
+        */
+
+        let now = new Date();
+        console.log(now);
+        console.log("\n");
+
+
+
+
+
+        // 2. new Date(milliseconds) or new Date(timestamp)
+
+
+        /*
+            Create a Date object with the time equal to number of 
+            milliseconds (1/1000 of a second) passed after the Jan 1st of 1970 UTC+0.
+        */
+
+        let jan01_1970 = new Date(0); // 0 means 01.01.1970 UTC+0
+        console.log(jan01_1970);
+
+        // now add 24 hours, get 02.01.1970 UTC+0
+        let jan02_1970 = new Date(24 * 60 * 60 * 1000);
+        console.log(jan02_1970);
+
+        /*
+            An integer number representing the number of milliseconds that has passed since 
+            the beginning of 1970 is called a timestamp.
+        
+            It’s a lightweight numeric representation of a date. We can always create a date 
+            from a timestamp using new Date(timestamp) and convert the existing Date object 
+            to a timestamp using the date.getTime() method (see below).
+        
+            Dates before 01.01.1970 have negative timestamps, e.g.
+        
+        */
+
+        let dec31_1969 = new Date(-24 * 60 * 60 * 1000);
+        console.log(dec31_1969);
+        console.log("\n");
+
+
+
+
+
+
+
+        // 3. new Date(datestring) : datestring => "YYYY-MM-DD"
+
+        /*
+            If there is a single argument, and it’s a string, then it is parsed automatically. 
+            The algorithm is the same as Date.parse uses, we’ll cover it later.
+        */
+
+        date = new Date("2017-01-26");
+        console.log(date);
+        console.log("\n");
+
+        /*
+            The time is not set, so it's assumed to be midnight GMT and is adjusted according 
+            to the timezone the code is run in So the result could be
+            Thu Jan 26 2017 11:00:00 GMT+1100 (Australian Eastern Daylight Time)
+            or
+            Wed Jan 25 2017 16:00:00 GMT-0800 (Pacific Standard Time)
+        */
+
+
+
+
+
+
+
+
+        //-------------> Other formate to declare specific date
+
+
+        // Date from individual string parts
+        date = new Date("2025", "05", "08"); // Treated as ISO
+        console.log(date); // Might not give exact expected result; not recommended
+
+        /*
+        🧠 Summary Table
+
+            | Format                           | Example                        | Notes                        |
+            | -------------------------------- | ------------------------------ | ---------------------------- |
+            |  new Date(YYYY, MM, DD)          |  new Date(2025, 5, 8)          | Month is 0-indexed           |
+            |  new Date("YYYY-MM-DD")          |  new Date("2025-06-08")        | ISO format                   |
+            |  new Date("Month DD, YYYY")      |  new Date("June 8, 2025")      | RFC format                   |
+            |  new Date(ms)                    |  new Date(86400000)            | Time since Jan 1, 1970 in ms |
+            |  new Date(YYYY, MM, DD, hh, mm)  |  new Date(2025, 5, 8, 14, 30)  | Date and time                |
+
+        */
+
+
+
+
+
+
+
+
+        // 4. new Date(year, month, date, hours, minutes, seconds, ms)
+
+
+        /*
+            Create the date with the given components in the local time zone. 
+            Only the first two arguments are obligatory.
+        
+                - The year should have 4 digits. For compatibility, 2 digits are also accepted 
+                  and considered 19xx, e.g. 98 is the same as 1998 here, but always using 4 digits 
+                  is strongly encouraged.
+                - The month count starts with 0 (Jan), up to 11 (Dec).
+                - The date parameter is actually the day of month, if absent then 1 is assumed.
+                - If hours/minutes/seconds/ms is absent, they are assumed to be equal 0.
+        */
+
+        date = new Date(2011, 0, 1, 0, 0, 0, 0);
+        console.log(date);
+
+        date = new Date(2011, 0, 1);
+        console.log(date);
+
+        date = new Date(2011, 0, 1, 2, 3, 4, 567);
+        console.log(date);
+        console.log("\n");
+
+
+
+
+
+
+        //-------------> Access date components
+
+        /*
+            There are methods to access the year, month and so on from the Date object:
+
+                getFullYear() - Get the year (4 digits)
+                getMonth() - Get the month, from 0 to 11.
+                getDate() - Get the day of month, from 1 to 31, the name of the method does look a little bit strange.
+                getDay() - 0-6 (0 = Sunday)
+                getHours() - 0-23
+                getMinutes() - 0-59
+                getSeconds() - 0-59
+                getMilliseconds() - 0-999
+                getTime() - Timestamp since Jan 1, 1970 (ms)
+                
+            All the methods above return the components relative to the local time zone.
+            There are also their UTC-counterparts, that return day, month, year and so on 
+            for the time zone UTC+0: getUTCFullYear(), getUTCMonth(), getUTCDay(). 
+            Just insert the "UTC" right after "get".
+
+                getTimezoneOffset() - Returns the difference between UTC and the local time zone, in minutes:
+
+        */
+
+        date = new Date();
+        console.log(date.getFullYear());
+        console.log(date.getMonth());
+        console.log(date.getDate());
+        console.log(date.getDay());
+        console.log(date.getHours());
+        console.log(date.getMinutes());
+        console.log(date.getSeconds());
+        console.log(date.getTime()); // milliSeconds since Jan 1, 1970
+        console.log("\n");
+
+
+        // current date
+        date = new Date();
+
+        // the hour in your current time zone
+        console.log( date.getHours() );
+
+        // the hour in UTC+0 time zone (London time without daylight savings)
+        console.log( date.getUTCHours() );
+        console.log("\n");
+        
+
+
+
+
+
+
+
+
+
+        //-----------------> Setting date components
+
+
+        /*
+            The following methods allow to set date/time components:
+
+                setFullYear(year, [month], [date])
+                setMonth(month, [date])
+                setDate(date)
+                setHours(hour, [min], [sec], [ms])
+                setMinutes(min, [sec], [ms])
+                setSeconds(sec, [ms])
+                setMilliseconds(ms)
+                setTime(milliseconds) (sets the whole date by milliseconds since 01.01.1970 UTC)
+                
+            Every one of them except setTime() has a UTC-variant, for instance: setUTCHours().
+
+            As we can see, some methods can set multiple components at once, for example setHours. 
+            The components that are not mentioned are not modified.
+        */
+
+        let today = new Date();
+
+        today.setHours(0); 
+        console.log(today); // still today, but the hour is changed to 0
+        
+        today.setHours(0, 0, 0, 0);
+        console.log(today); // still today, now 00:00:00 sharp.
+        console.log("\n");
+        
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+        //---------------> Autocorrection
+
+        /*
+            The autocorrection is a very handy feature of Date objects. 
+            We can set out-of-range values, and it will auto-adjust itself.
+
+            For instance:
+        */
+
+        date = new Date(2013, 0, 32); // 32 Jan 2013 ?!?
+        console.log(date); // ...is 1st Feb 2013!
+        // Out-of-range date components are distributed automatically.
+
+
+        /*
+
+            Let’s say we need to increase the date “28 Feb 2016” by 2 days. 
+            It may be “2 Mar” or “1 Mar” in case of a leap-year. 
+            We don’t need to think about it. Just add 2 days. 
+            The Date object will do the rest:
+
+        */
+
+
+        date = new Date(2016, 1, 28);
+        console.log( date ); // 28 Feb 2016
+
+        date.setDate(date.getDate() + 2);
+        console.log( date ); // 1 Mar 2016
+
+
+        /*
+            That feature is often used to get the date after the given period of time. 
+            For instance, let’s get the date for “70 seconds after now”:
+        */
+
+        date = new Date();
+        console.log(date);  // current Date and time
+        
+        date.setSeconds(date.getSeconds() + 70);
+        console.log(date); // date and time after 70 seconds
+
+
+
+        
+        
+        // We can also set zero or even negative values. For example:
+        
+        date = new Date(2016, 0, 2); //2 Jan 2016
+        console.log(date);
+        
+        date.setDate(1);  // set day 1 of month
+        console.log(date);
+        
+        date.setDate(0); // minimum day is 1, so the last day of the previous month is assumed
+        console.log(date); // 31 Dec 2015
+        console.log("\n");
+        
+
+
+        //------------> Doubt : why 29 Dec 2015 ??
+
+
+        // 🗓️ Create a new date object for January 2, 2016
+        date = new Date(2016, 0, 2); // Month is 0-based, so 0 = January
+        console.log("Original Date (Local):", date.toString()); // Output in your local timezone (e.g., IST)
+        console.log("UTC :", date.toUTCString());
+
+        // ⏪ Set date to -2, which means we go 2 days *before* January 1st
+        // JavaScript auto-corrects the date: Jan 2 → Jan 1 → Dec 31 → Dec 30 (UTC)
+        // Due to timezone (e.g., IST is UTC+5:30), Dec 30 UTC may become Dec 29 local
+        date.setDate(-2);
+
+        // 📆 Print adjusted date
+        console.log("After setDate(-2) (Local):", date.toString()); // Adjusted local date
+        console.log("After setDate(-2) (UTC):", date.toUTCString()); // UTC date for comparison
+
+        /*
+            📝 Explanation:
+                - new Date(2016, 0, 2) → Jan 2, 2016 (00:00:00)
+                - setDate(-2) → Goes back 2 days before Jan 1, 2016 (to Dec 30, 2015 UTC)
+                - In IST (UTC+5:30), midnight UTC = 5:30 AM IST, so it appears as Dec 29
+                - This is expected behavior due to how JS handles timezones internally
+        */
+        console.log("\n");
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        //---------------> Date to number, date diff
+
+        /*
+            When a Date object is converted to number, it becomes the timestamp same as date.getTime():
+        */
+
+        date = new Date();
+        console.log(date);
+        console.log(+date); // the number of milliseconds, same as date.getTime()
+        
+
+        /*
+            The important side effect: dates can be subtracted, the result is their difference in ms.
+            That can be used for time measurements:
+        */
+
+ 
+        let start = new Date(); // start measuring time
+
+        //performing a cubing task to consume some time
+        for (let i = 0; i < 100000; i++) {
+            let doSomething = i * i * i;
+        }
+
+        let end = new Date(); // end measuring time
+
+        // Subtracting Date objects returns the time difference in milliseconds
+        console.log( `The loop took ${end - start} ms` );
+
+
+
+        /*
+            🛠 Pro Tip:
+                For more precise measurements, especially in performance-critical applications, use:
+                    
+                    let t0 = performance.now();
+                    // ...code
+                    let t1 = performance.now();
+                    console.log(`Time taken: ${t1 - t0} ms`);
+
+                This is part of the performance API and is more accurate (supports sub-millisecond precision).
+        */
+
+
+
+
+
+
+
+
+
+        
+
+
+        //------------------> Date.now()
+
+
+        /*
+
+            If we only want to measure time, we don’t need the Date object.
+
+            There’s a special method Date.now() that returns the current timestamp.
+
+            It is semantically equivalent to new Date().getTime(), but it doesn’t 
+            create an intermediate Date object. So it’s faster and doesn’t put 
+            pressure on garbage collection.
+
+            It is used mostly for convenience or when performance matters, 
+            like in games in JavaScript or other specialized applications.
+
+            So this is probably better:
+
+        */
+
+
+
+        // Start the timer: get current timestamp in milliseconds since Jan 1, 1970
+        start = Date.now(); 
+
+        // Simulate a task (like a heavy computation)
+        for (let i = 0; i < 100000; i++) {
+            let doSomething = i * i * i; // Just a dummy calculation
+        }
+
+        // End the timer: get timestamp after the task
+        end = Date.now(); 
+
+        // Calculate and show how long the task took (subtract numbers, not dates)
+        console.log(`The loop took ${end - start} ms`); 
+        
+        // `end - start` gives duration in milliseconds
+        console.log("\n");
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //-------------------> Benchmarking
+
+        /*
+
+            ✅ Benchmarking
+                Benchmarking means measuring how long a piece of code takes to run, 
+                often to compare different approaches and pick the fastest one.
+
+            🧪 Why Benchmark?
+                - Optimize performance.
+                - Compare two different algorithms.
+                - Detect slow parts of code.
+
+
+        */
+
+
+
+
+
+        // ✅ Best Way to Benchmark: Date.now() or performance.now()
+
+
+
+        // Example 1: Using Date.now()
+
+        start = Date.now(); // start time in ms
+
+        // 🔁 Task to benchmark
+        for (let i = 0; i < 1000000; i++) {
+            let square = i ** 2;
+        }
+
+        end = Date.now(); // end time in ms
+
+        console.log(`Time taken: ${end - start} ms`);
+
+
+
+
+        // Example 2: Using performance.now() (⚡ Higher precision) - read it later
+
+        start = performance.now(); // more accurate
+
+        // 🔁 Task to benchmark
+        for (let i = 0; i < 1000000; i++) {
+            let cube = i ** 3;
+        }
+
+        end = performance.now();
+
+        console.log(`Time taken: ${(end - start).toFixed(3)} ms`);
+
+
+
+
+
+
+
+        /*
+
+            If we want a reliable benchmark of CPU-hungry function, we should be careful.
+
+            For instance, let’s measure two functions that calculate the 
+            difference between two dates: which one is faster?
+
+            Such performance measurements are often called “benchmarks”.
+
+            we have date1 and date2, which function faster returns their difference in ms?
+
+        */
+
+
+
+        function diffSubtract(date1, date2) {
+            return date1 - date2;
+        }
+
+        function diffGetTime(date1, date2) {
+            return date1.getTime() - date2.getTime();
+        }
+
+
+        /*
+
+            These two do exactly the same thing, but one of them uses an 
+            explicit date.getTime() to get the date in ms, and the other 
+            one directly subtract date objects and relies on a date-to-number transform.
+            javaScript automatically converts them to timestamps (milliseconds) for subtraction. 
+            
+            Both do the same thing, but in different ways but their resuls
+            are always the same.
+
+            So, which one is faster?
+
+            The first idea may be to run them many times in a row and measure 
+            the time difference. For our case, functions are very simple, 
+            so we have to do it at least 100000 times.
+
+            Let’s measure:
+
+        */
+
+        function bench(f) {
+            let date1 = new Date(0); // 1 Jan 1970
+            let date2 = new Date();  // Current date
+
+            let start = Date.now(); // Start time
+
+            for (let i = 0; i < 100000; i++) {
+                f(date1, date2); // Call the function passed to bench 1,00,000 times
+            }
+
+            return Date.now() - start; // Return time taken
+        }
+
+        console.log( 'Time of diffSubtract: ' + bench(diffSubtract) + 'ms' );
+        console.log( 'Time of diffGetTime: ' + bench(diffGetTime) + 'ms' );
+
+
+
+        /*
+            🧠 Why is getTime() usually faster? Because:
+
+                -> date2 - date1 calls an internal method to convert objects to primitives → slower.
+                -> getTime() directly returns a number (timestamp in milliseconds) → faster, less processing.
+            
+            Wow! Using getTime() is so much faster! That’s because there’s 
+            no type conversion, it is much easier for engines to optimize.
+
+            Okay, we have something. But that’s not a good benchmark yet.
+
+            Imagine that at the time of running bench(diffSubtract) CPU was 
+            doing something in parallel, and it was taking resources. And by 
+            the time of running bench(diffGetTime) that work has finished.
+
+            A pretty real scenario for a modern multi-process OS.
+
+            As a result, the first benchmark will have less CPU resources than 
+            the second. That may lead to wrong results.
+
+            For more reliable benchmarking, the whole pack of benchmarks 
+            should be re-run multiple times.
+
+            For example, like this:
+
+        */
+
+
+        function diffSubtract(date1, date2) {
+            return date2 - date1;
+        }
+
+        function diffGetTime(date1, date2) {
+            return date2.getTime() - date1.getTime();
+        }
+
+        function bench(f) {
+            let date1 = new Date(0);
+            let date2 = new Date();
+
+            let start = Date.now();
+            for (let i = 0; i < 100000; i++) f(date1, date2);
+            return Date.now() - start;
+        }
+
+        let time1 = 0;
+        let time2 = 0;
+
+        // run bench(diffSubtract) and bench(diffGetTime) each 10 times alternating
+        for (let i = 0; i < 10; i++) {
+            time1 += bench(diffSubtract);
+            time2 += bench(diffGetTime);
+        }
+
+        console.log( 'Total time for diffSubtract: ' + time1 + ' ms');
+        console.log( 'Total time for diffGetTime: ' + time2 + ' ms');
+
+
+        /*
+            Modern JavaScript engines like V8 (used in Chrome, Edge, Node.js) 
+            use Just-In-Time (JIT) compilation techniques. These engines 
+            optimize "hot code" — code that runs many times — but skip or delay 
+            optimizing rarely executed code.
+
+            This means:
+                - The first few times a function runs, it may be interpreted slowly.
+                - After detecting frequent usage, the engine compiles it to optimized machine code.
+
+            ✅ So what's the solution? Add a "warm-up" phase (aka heat-up run)
+            
+            This is how you improve benchmarking reliability by letting the engine optimize the code first:
+
+        */
+
+        // Improved Benchmark with Heat-up Run
+
+        function diffSubtract(date1, date2) {
+        return date2 - date1;
+        }
+
+        function diffGetTime(date1, date2) {
+        return date2.getTime() - date1.getTime();
+        }
+
+        function bench(f) {
+        let date1 = new Date(0);
+        let date2 = new Date();
+
+        let start = Date.now();
+        for (let i = 0; i < 100000; i++) f(date1, date2);
+        return Date.now() - start;
+        }
+
+        // 🔥 Warm-up run to allow JIT optimization
+        bench(diffSubtract);
+        bench(diffGetTime);
+
+        // 🔁 Benchmark multiple times for accurate results
+        time1 = 0;
+        time2 = 0;
+
+        for (let i = 0; i < 10; i++) {
+        time1 += bench(diffSubtract);
+        time2 += bench(diffGetTime);
+        }
+
+        console.log("Total time for diffSubtract: " + time1 + "ms");
+        console.log("Total time for diffGetTime: " + time2 + "ms");
+        console.log("\n");
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+        //---------------> Date.parse(str)
+
+        /*
+            ✅ Date.parse()
+
+                Date.parse() is a built-in JavaScript method that converts a date 
+                string into a timestamp (number of milliseconds since Jan 1, 1970, UTC).
+
+
+
+            🧠 Syntax:
+
+                Date.parse(dateString)
+                    - It accepts a string in valid date format.
+                    - Returns: Number (timestamp) in milliseconds.
+
+
+
+            📅 ISO Date String Format (used in Date.parse() and new Date())
+
+                The string format should be: YYYY-MM-DDTHH:mm:ss.sssZ, where:
+                    YYYY-MM-DD – is the date: year-month-day.
+                    The character "T" is used as the delimiter.
+                    HH:mm:ss.sss – is the time: hours, minutes, seconds and milliseconds(optional).
+                    The optional 'Z' part denotes the time zone in the format +-hh:mm. A single letter Z would mean UTC+0.
+
+                Shorter variants are also possible, like YYYY-MM-DD or YYYY-MM or even YYYY.
+
+
+
+            🧪 Notes:
+
+                The call to Date.parse(str) parses the string in the given format 
+                and returns the timestamp (number of milliseconds from 1 Jan 1970 UTC+0). 
+                If the format is invalid, returns NaN.
+
+        */
+
+
+
+        let ms = Date.parse("2012-01-26T13:51:50.417-07:00");
+        console.log(ms);
+        
+        // We can instantly create a new Date object from the timestamp:
+        date = new Date( Date.parse('2012-01-26T13:51:50.417-07:00') );
+        console.log(date);
+        
+
+
+        // Example
+        let timestamp = Date.parse("2024-12-25T00:00:00Z");
+        console.log(timestamp); // e.g. 1735084800000
+
+        date = new Date(timestamp);
+        console.log(date); // Wed Dec 25 2024 05:30:00 GMT+0530 (India Standard Time)
+
+
+
+
+
+        // 🧾 Valid Date Formats
+        console.log(Date.parse("2025-06-08"));             // ISO (yyyy-mm-dd)
+        console.log(Date.parse("2025-06-08T14:30:00"));    // ISO with time
+        console.log(Date.parse("June 8, 2025"));           // Long format
+        console.log(Date.parse("06/08/2025"));             // MM/DD/YYYY (may vary by browser)
+        console.log(Date.parse("Sun, 08 Jun 2025 12:00:00 GMT")); // RFC2822 format
+
+
+        /*
+            ⚠️ Note:
+                - Date.parse() can fail silently if format is invalid. It returns NaN.
+                - Always use ISO format (YYYY-MM-DD) to avoid inconsistencies.
+        */
+
+
+
+
+        // ✅ Shortcut (alternative) - Instead of Date.parse(string), you can just do:
+        date = new Date("2025-08-15");
+        console.log(date);
+        // This also internally calls Date.parse().
+        console.log("\n");
+        
+
+
+
+
+
+
+
+
+
+
+        //---------------------> Date Arithmetic
+
+
+
+        // ✅ Add days to date
+
+        d = new Date();
+        d.setDate(d.getDate() + 5);
+        console.log(d); // 5 days later
+
+
+
+
+        // ✅ Subtract days
+
+        d = new Date();
+        d.setDate(d.getDate() - 10);
+        console.log(d); // 10 days ago
+
+
+
+
+        // 🧮 Date Difference (in days)
+
+        start = new Date("2025-06-01");
+        end = new Date("2025-06-06");
+
+        let diff = end - start; // difference in ms between two dates
+        let days = diff / (1000 * 60 * 60 * 24); // convert ms to days
+        console.log(days); // 5
+        console.log("\n");
+        
+
+
+
+
+
+
+
+
+
+        //---------> 🕔 Formatting Date and Time
+
+        d = new Date();
+
+        console.log(d.toString());       // Full string
+        console.log(d.toDateString());   // Date only
+        console.log(d.toTimeString());   // Time only
+        console.log(d.toISOString());    // ISO format
+        console.log(d.toLocaleString()); // Localized
+        console.log("\n");
+        
+
+
+        /*
+
+            📦 Useful Real-Life Use Cases
+
+            | Task                                 | Use                                 |
+            | ------------------------------------ | ----------------------------------- |
+            | Show current date/time in UI         |   new Date() + formatting           |
+            | Countdown timers / Stopwatches       |   Date.now() + math                 |
+            | Date comparison                      |   d1 > d2 using timestamps          |
+            | Filter events within date range      |   if (date >= start && date <= end) |
+            | Save dates to database in ISO format |   date.toISOString()                |
+
+        */
+
+
+
+
+        
+
+    </script>
+</body>
+
+</html>

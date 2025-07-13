@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text overflow</title>
+    <style>
+        div{
+            border: 2px solid red;
+            margin-top: 30px;
+            width: 300px;
+        }
+
+        .two{
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        
+        .three{
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .four{
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: "[..]";
+            /* supported only in firefox */
+        }
+        </style>
+</head>
+<body>
+    <div class="one">
+        1. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis optio minima
+    </div>
+    <div class="two">
+        2. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis optio minima
+    </div>
+    <div class="three">
+        3. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis optio minima
+    </div>
+    <div class="four">
+        4. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis optio minima
+    </div>
+</body>
+</html>

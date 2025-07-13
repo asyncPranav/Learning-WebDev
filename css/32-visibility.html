@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visibility</title>
+    <style>
+        div{
+            border: 2px solid red;
+            padding: 20px;
+        }
+
+        .two{
+            margin-top: 20px;
+            visibility: hidden;
+
+        }
+
+        table, th, td{
+            border: 1px solid black;
+        }
+        .tr-2{
+            visibility: collapse;
+        }
+    </style>
+</head>
+<body>
+    <div class="one">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, consequatur.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, consequatur.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, consequatur.
+    </div>
+
+    <div class="two">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, consequatur.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, consequatur.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, consequatur.
+    </div>
+
+    <table>
+        <tr>
+            <th>Heading 1</th>
+            <td>Description 1</td>
+        </tr>
+        <tr class="tr-2">
+            <th>Heading 2</th>
+            <td>Description 2</td>
+        </tr>
+        <tr>
+            <th>Heading 3</th>
+            <td>Description 3</td>
+        </tr>
+ 
+    </table>
+</body>
+</html>

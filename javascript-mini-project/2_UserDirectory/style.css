@@ -1,0 +1,79 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+html, body{
+    width: 100%;
+    height: 100%;
+    background-color: #e8edf5;
+
+
+}
+
+.container{
+    /* border: 2px solid red; */
+    width: 80%;
+    max-width: 600px;
+    padding: 2em;
+    margin: 2em auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    align-items: center;
+    background-color: #e8edf5;
+    box-shadow: 0px 0px 10px  rgb(200,200,200);
+    border-radius: 0.5em;
+}
+
+#searchInput{
+    padding: 0.5em;
+    width: 100%;
+    border: 2px solid rgb(148, 148, 148);
+    border-radius: 0.5em;
+}
+
+.userContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 0.7em;
+    width: 100%;
+    
+}
+
+.userContainer .userItem{
+    display: flex;
+    gap: 1em;
+    height: 4em;
+    align-items: center;
+    background-color: #dde1e8;
+    width: 100%;
+    border-radius: 0.8em;
+    padding: 0 1em;
+}
+
+.userContainer .userItem img{
+    width: 3em;
+    height: 3em;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: top;
+}
+
+.userContainer .userItem .userDetails h3{
+    font-size: 0.9em;
+    letter-spacing: 0.05em;
+}
+
+.userContainer .userItem .userDetails p{
+    font-size: 0.85em;
+    letter-spacing: 0.1em;
+    color: rgb(111, 111, 111);
+}
+
+.no-user-found {
+    text-align: center;
+    color: #888;
+}

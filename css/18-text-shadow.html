@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text shadow</title>
+    <style>
+        body{
+            background-color: #303030;
+        }
+        h1{
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 80px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .one{
+            text-shadow: 2px 2px 2px red;
+        }
+
+        .two{
+            margin-top: 40px;
+            text-shadow: -2px -2px 2px red;
+            
+        }
+        
+        .three{
+            margin-top: 40px;
+            text-shadow: 2px 2px 2px red, 4px 4px 2px gold, 6px 6px 2px lightgreen;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="one">Pranav</h1>
+    <h1 class="two">Pranav</h1>
+    <h1 class="three">Pranav</h1>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Z-index</title>
+    <style>
+        body{
+            background-color: #252525;
+        }
+
+        div{
+            width: 150px;
+            height: 150px;
+            font-size: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        
+        .one{
+            background-color: lightgreen;
+            top: 50px;
+            left: 50px;
+            z-index: 1;
+        }
+
+        .two{
+            background-color: lightpink;
+            top: 100px;
+            left: 100px;
+            z-index: 2;
+        }
+        
+        .three{
+            background-color: lightskyblue;
+            top: 150px;
+            left: 150px;
+            z-index: 3;
+        }
+        
+        .four{
+            background-color: lightsalmon;
+            top: 200px;
+            left: 200px;
+            z-index: 4;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="one">1</div>
+    <div class="two">2</div>
+    <div class="three">3</div>
+    <div class="four">4</div>
+</body>
+
+</html>

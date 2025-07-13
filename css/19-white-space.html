@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>White space</title>
+    <style>
+        div{
+            border: 3px solid red;
+            margin-top: 20px;
+            width: 400px;
+        }
+
+        .one{
+            white-space: nowrap;
+        }
+
+        .two{
+            white-space: pre;
+            /* work same as pre tag of html */
+            /* nowrap works here */
+            /* if whole para is in one line then it will show exactly */
+        }
+
+        .three{
+            white-space: pre-line;
+            /* work same as pre tag of html */
+            /* but it take only single space */
+            /* nowrap does not works here */
+            /* if whole para is in one line then it will wrap content in multiple lines */
+        }
+
+        .four{
+            white-space: pre-line;
+        }
+        
+        .five{
+            white-space: pre-wrap;
+            /* works same as pre */
+            /* but nowrap does not work here */
+        }
+
+        /* 
+            🔎 Quick Comparison Table
+
+            | `white-space` Value | Collapses spaces? | Preserves line breaks? | Wraps text? | Description                                                      |
+            | ------------------- | ----------------- | ---------------------- | ----------- | ---------------------------------------------------------------- |
+            | `normal`            | ✅ Yes            | ❌ No                  | ✅ Yes     | **Default**. Multiple spaces become one. Breaks lines if needed. |
+            | `nowrap`            | ✅ Yes            | ❌ No                  | ❌ No      | No wrapping at all. Text continues on one line.                  |
+            | `pre`               | ❌ No             | ✅ Yes                 | ❌ No      | Behaves like `<pre>` tag. Keeps all spaces and line breaks.      |
+            | `pre-line`          | ✅ Yes            | ✅ Yes                 | ✅ Yes     | Collapses spaces but keeps **line breaks** from HTML/text.       |
+            | `pre-wrap`          | ❌ No             | ✅ Yes                 | ✅ Yes     | Preserves spaces **and** line breaks. Wraps as needed.           |
+        
+        */
+
+
+
+    </style>
+</head>
+<body>
+    <div class="one">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. A quod omnis consequatur eligendi impedit magni facilis iure voluptates, quos soluta explicabo magnam et nulla adipisci recusandae maiores quibusdam nam! Consectetur laudantium nostrum quis, aperiam nam veniam consequatur ipsa modi
+    </div>
+    <div class="two">
+        Lorem ipsum                dolor sit amet consectetur, adipisicing elit. 
+        A quod omnis consequatur eligendi impedit magni facilis 
+        iure voluptates, quos soluta explicabo magnam et nulla adipisci 
+        recusandae maiores quibusdam nam! Consectetur 
+        laudantium nostrum quis, aperiam nam veniam consequatur ipsa modi
+    </div>
+    <div class="three">
+        Lorem ipsum dolor              sit amet consectetur, 
+        adipisicing elit. A quod omnis consequatur eligendi 
+        impedit magni facilis iure voluptates, quos soluta 
+        explicabo magnam et nulla adipisci recusandae maiores
+        quibusdam nam! Consectetur 
+        laudantium nostrum quis,
+         aperiam nam veniam consequatur ipsa modi
+    </div>
+    <div class="four">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. A quod omnis consequaturrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr eligendi impedit magni facilis iure voluptates, quos soluta explicabo magnam et nulla adipisci recusandae maiores quibusdam nam! Consectetur laudantium nostrum quis, aperiam nam veniam consequatur ipsa modi
+    </div>
+    <div class="five">
+        Lorem ipsum dolor sit amet consectetur, 
+        adipisicing elit. A quod omnis consequatur    eligendi impedit              magni facilis iure voluptates, quos soluta explicabo magnam et nulla adipisci recusandae maiores quibusdam nam! Consectetur laudantium nostrum quis, aperiam nam veniam consequatur ipsa modi
+    </div>
+</body>
+</html>

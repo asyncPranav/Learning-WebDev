@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .first{
+            border: 3px solid green;
+            width: 400px;
+            height: 150px;
+        }
+
+        /*
+            -> cant give height of parent element in percentage
+            -> if content is more and height is less then content will overflow the div box, to avoid it we use min-height
+            -> width can be given in both percentage and pixels
+        */
+        .second{
+            margin-top: 20px;
+            border: 3px solid crimson;
+            width: 500px;
+            height: 100px;
+        }
+        .third{
+            margin-top: 150px;
+            border: 3px solid deepskyblue;
+            width: 100%;
+            height: 200px;
+        }
+
+        /*
+            -> can give height of child element in percentage whose parent element's height is fixed, if parent div has min-height then child div will not accept height in percentage 
+            -> child div can have width in both percentage and pixels and if width of child div is 50% then child div will take half of width of parent div irrespective of the fact whether parent div has fixed width or percentage width
+        */
+        .third div{
+            border: 2px solid black;
+            width: 50%;
+            height: 70%;
+        }
+    </style>
+</head>
+<body>
+    <div class="first">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus ducimus voluptatem ex deserunt voluptas non architecto ea minus, tempore officiis nemo laudantium, eos magni fuga iure! Velit, est. Itaque, sint!
+    </div>
+
+    <div class="second">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus ducimus voluptatem ex deserunt voluptas non architecto ea minus, tempore officiis nemo laudantium, eos magni fuga iure! Velit, est. Itaque, sint!
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus ducimus voluptatem ex deserunt voluptas non architecto ea minus, tempore officiis nemo laudantium, eos magni fuga iure! Velit, est. Itaque, sint!
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus ducimus voluptatem ex deserunt voluptas non architecto ea minus, tempore officiis nemo laudantium, eos magni fuga iure! Velit, est. Itaque, sint!
+    </div>
+
+    <div class="third">
+        <div>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem autem totam ipsa incidunt corporis natus, eligendi fugit deleniti ex quaerat consequatur neque ad aliquam eaque ratione ullam illo saepe nisi?
+        </div>
+    </div>
+
+    <div class="fourth"></div>
+</body>
+</html>

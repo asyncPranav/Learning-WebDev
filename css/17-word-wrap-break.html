@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word-Wrap & Word-Break</title>
+    <style>
+        div{
+            border: 3px solid lightseagreen;
+            margin-top: 30px;
+            width: 50%;
+        }
+
+        .two{
+            word-wrap: break-word;
+            /* break long words only to prevent overflow from the container */
+        }
+
+        .three{
+            word-break: break-all;
+            /* all character of word are breakable */
+            /* not much useful in general */
+            /* because it break word in the middle */
+        }
+    </style>
+</head>
+<body>
+    <div class="one">
+        veryLonggggggggggggggggggggggggggggggggggggggggggggggggggggg word exist in this paraaa therefore it overflow out of the box
+    </div>
+
+    <div class="two">
+        veryLonggggggggggggggggggggggggggggggggggggggggggggggggggggg word exist in this paraaa therefore it overflow out of the box
+    </div>
+
+    <div class="three">
+        veryLonggggggggggggggggggggggggggggggggggggggggggggggggggggg word exist in this paraaa therefore it overflow out of the box
+    </div>
+</body>
+</html>
