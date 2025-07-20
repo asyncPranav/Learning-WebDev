@@ -85,3 +85,12 @@
 //     }
 // }
 
+
+// find prime number 
+outer: for(let i=2; i<=20; i++) {
+    for(let j=2; j<=Math.sqrt(i); j++){
+        if(!(i%j)) continue outer;
+    }
+    console.log(i);
+}
+
