@@ -206,6 +206,15 @@ while (true) {
     pos = foundPos + 1; // continue the search from the next position
 }
 
+/* while (true) {
+    pos = str.indexOf(target,pos);
+    if (pos !== -1) {
+        console.log("found at " + pos);
+        pos++;
+    } else {
+        break;
+    }
+} */
 
 // The same algorithm can be layed out shorter:
 str = "As sly as a fox, as strong as an ox";
