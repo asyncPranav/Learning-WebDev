@@ -774,3 +774,11 @@ for (const letter of arr) {
 }
 
 console.log(unique);
+
+
+
+
+
+// using set (best method)
+unique = new Set(arr);
+console.log(unique);
