@@ -763,32 +763,14 @@ console.log(result);
 
 
 
+// using loop + condition
+arr = ["a", "b", "a", "c", "b"];
+let unique= [];
 
+for (const letter of arr) {
+    if (!unique.includes(letter)) {
+        unique.push(letter);
+    }
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+console.log(unique);
