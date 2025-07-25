@@ -223,6 +223,11 @@ let b = [3,4,5,6];
 let setA = new Set(a);
 let common = b.filter((item) => setA.has(item));
 console.log(common);
+
+
+// M-02
+common = b.filter((item) => a.includes(item));
+console.log(common);
 console.log();
 
 
@@ -241,7 +246,19 @@ setA = new Set(a);
 
 // let union = Array.from( new Set([...a, ...b]) ); // output : [1,2,3,4,5,6] (correct)
 
+// let union = Array.from( new Set(a.concat(b)) ); // output : [1,2,3,4,5,6] (correct)
+
 let union = [ ...new Set([...a, ...b]) ]; // output : [1,2,3,4,5,6] (correct)
+
+/*  
+    Explantion : 
+    
+    let unionSet = new Set([...a, ...b]);
+    console.log(unionSet);
+
+    let unionArr = [...unionSet];
+    console.log(unionArr);
+*/
 
 console.log(union);
 console.log();
