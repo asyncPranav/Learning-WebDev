@@ -1,0 +1,33 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  background-color: #202020;
+  color: rgb(241, 240, 240);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+}
+
+h2{
+  margin-bottom: 0.5rem;
+}
+
+button{
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  background-color: slateblue;
+  margin: 0.5rem;
+  border: none;
+  outline: none;
+}
+
+button:active{
+  transform: scale(1.1);
+}

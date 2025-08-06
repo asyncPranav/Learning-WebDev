@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Counter app</title>
+</head>
+<body>
+  <div class="counterParent"></div>
+  <script>
+    const state = {
+      count: 0,
+      color: "red"
+    }
+
+    function onButtonPress(){
+      state.count += 1;
+      state.color = Math.random() > 0.5 ? "red" : "blue";
+      buttonComponentReRender();
+    }
+    
+    function buttonComponent(count, color){
+      const button = document.createElement("button");
+      button.innerHTML = `Counter ${count}`;
+      button.setAttribute("onclick", `onButtonPress()`);
+      button.setAttribute("style", `color:${color}`);
+      return button;
+    }
+    
+    function buttonComponentReRender(){
+      document.querySelector(".counterParent").innerHTML = "";
+      const component = buttonComponent(state.count, state.color);
+      document.querySelector(".counterParent").appendChild(component);
+    }
+    buttonComponentReRender();
+  </script>
+</body>
+</html>

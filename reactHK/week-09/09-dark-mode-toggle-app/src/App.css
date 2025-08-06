@@ -1,0 +1,38 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.light{
+  background-color: #202020;
+  color: rgb(238, 238, 238);
+}
+
+.dark{
+  color: #202020;
+  background-color: rgb(238, 238, 238);
+}
+
+.container{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+button{
+  padding: 0.5rem 3rem;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  border: none;
+  background-color: lightskyblue;
+  border-radius: 1rem;
+  outline: none;
+}
+
+button:active{
+  transform: scale(1.1);
+}
