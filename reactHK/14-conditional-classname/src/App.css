@@ -1,0 +1,24 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.container{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  transition: all 0.4s ease;
+}
+
+.dark{
+  background: #202020;
+  color: rgb(244, 244, 244);
+}
+
+.light{
+  color: #202020;
+  background: rgb(244, 244, 244);
+}
