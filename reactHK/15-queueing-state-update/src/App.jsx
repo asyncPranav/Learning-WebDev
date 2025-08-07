@@ -62,6 +62,16 @@ import "./App.css";
     prev = 1 → 2
     prev = 2 → 3
 
+  🧠 Optional Tip (for deeper understanding):
+
+    Each setCount(prev => prev + 1) gets queued, and React ensures that:
+
+    - The first one uses count = 0,
+    - The second one uses count = 1,
+    - The third one uses count = 2 → so the final count is 3.
+
+    This only works because you used the functional updater form. If you had used setCount(count + 1), all three would use count = 0 and result in count = 1.
+
 */
 
 function App() {
