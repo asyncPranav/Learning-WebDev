@@ -55,6 +55,9 @@ body {
 /* User info */
 .userInfo p {
   margin: 5px 0;
+  word-break: break-word;      /* Break long words */
+  overflow-wrap: break-word;   /* Ensures wrapping across all browsers */
+  white-space: normal;         /* Allow normal wrapping */
 }
 
 .userInfo p:first-child {
@@ -102,11 +105,14 @@ body {
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: bold;
-  background-color: #1a1a1a;
+  background-color: #181818;
   color: white;
-  transition: border-color 0.25s;
+}
+
+.formContainer button:hover {
+  color: #646cff;
 }
 
 .formContainer button:active {
-  color: #646cff;
+  transform: scale(1.1);
 }
