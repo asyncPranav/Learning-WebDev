@@ -1,4 +1,4 @@
-# 📝 React Todo App
+# 📝 React User Directory App
 
 A simple and clean User Directory App built with **React**. This app allows you to add new users
 
