@@ -1,0 +1,156 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+html{
+  font-size: 62.5%;
+  height: 100%;
+  width: 100%;
+}
+
+body{
+  padding: 4rem 3rem;
+  background: #202020;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+#root{
+  width: 100%;
+  max-width: 650px;
+  min-height: 100%;
+  margin: 0 auto;
+}
+
+.formContainer{
+  border: 2px solid rgb(80, 80, 90);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  padding: 3rem 2rem;
+  border-radius: 1rem;
+  box-shadow: 0.3rem 0.3rem 0.5rem rgba(0, 0, 0, 0.4), -0.3rem -0.3rem 0.5rem rgba(255, 255, 255, 0.077);
+
+}
+
+.formContainer input{
+  padding: 1rem;
+  border: 1px solid rgb(64, 64, 70);
+  border-radius: 1rem;
+  background: #202020;
+  outline: none;
+  width: 100%;
+  color: rgb(210, 216, 222);
+  font-weight: bold;
+}
+
+.formContainer input:focus{
+  border: 1px solid rgb(139, 121, 255);
+}
+
+.formContainer button{
+  padding: 1rem;
+  font-weight: bold;
+  font-size: 1.5rem;
+  background: rgb(107, 91, 209);
+  border: none;
+  outline: none;
+  border-radius: 1rem;
+  color: rgb(210, 216, 222);
+}
+
+.formContainer button:active{
+  transform: scale(1.05);
+}
+
+.taskListContainer{
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  margin-bottom: 6rem;
+
+}
+
+.taskCard{
+  border: 0.2rem solid rgb(64, 64, 66);
+  border-radius: 1rem;
+  padding: 1.3rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.4), -0.2rem -0.2rem 0.5rem rgba(255, 255, 255, 0.04);
+}
+
+.taskCard p strong{
+  color: rgb(231, 231, 231);
+  font-size: 1.5rem;
+}
+
+.taskCard p {
+  color: rgb(199, 199, 199);
+  font-size: 1.5rem;
+  padding-right: 1rem;
+  word-break: break-word;      /* Break long words */
+  overflow-wrap: break-word;   /* Ensures wrapping across all browsers */
+  white-space: normal;         /* Allow normal wrapping */
+}
+
+.taskCard .taskButtonContainer{
+  display: flex;
+  gap: 1rem;
+}
+
+.taskCard .taskButtonContainer button{
+  padding: 0.7rem 1.2rem;
+  background: rgb(107, 91, 209);
+  color: rgb(231, 231, 231);
+  border: none;
+  outline: none;
+  border-radius: 0.5rem;
+  font-size: 1.4rem;
+  box-shadow: inset 0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.4), inset -0.2rem -0.2rem 0.5rem rgba(255, 255, 255, 0.04);
+  box-shadow: -0.2rem -0.2rem 0.5rem rgba(0, 0, 0, 0.4), 0.2rem 0.2rem 0.5rem rgba(255, 255, 255, 0.04);
+
+}
+
+.taskCard .taskButtonContainer button:active{
+  transform: scale(1.07);
+}
+
+/* on task done functionality */
+.taskCard p.done{
+  text-decoration-thickness: 0.2rem;
+  text-decoration-color: lightseagreen;
+  text-decoration-line: line-through;
+}
+
+.footer{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 2rem;
+  width: 100%;
+  text-align: center;
+}
+
+.footer p{
+  font-size: 1.5rem;
+  color: rgb(231, 231, 231);
+}
+
+.footer p a{
+  text-decoration: none;
+  color: rgb(107, 91, 209);
+}
+
+.footer p a:hover{
+  color: rgb(95, 67, 255);
+}
