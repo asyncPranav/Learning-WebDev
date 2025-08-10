@@ -1,0 +1,15 @@
+ul{
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  background-color: rgb(216, 223, 228);
+  padding: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+li a{
+  text-decoration: none;
+  font-family: sans-serif;
+  font-weight: bold;
+}
