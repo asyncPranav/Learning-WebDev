@@ -1,0 +1,72 @@
+.app {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  margin-top: 50px;
+}
+
+.input-area {
+  margin-bottom: 20px;
+}
+
+input {
+  padding: 8px;
+  font-size: 16px;
+  width: 200px;
+}
+
+button {
+  padding: 8px 12px;
+  margin-left: 8px;
+  border: none;
+  background-color: #4cafef;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #3b8ecf;
+}
+
+.filters {
+  margin: 15px 0;
+}
+
+.filters button {
+  margin: 0 5px;
+}
+
+.filters .active {
+  background-color: #2e86de;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background: #f4f4f4;
+  margin: 8px auto;
+  padding: 8px 12px;
+  width: 250px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+li.completed span {
+  text-decoration: line-through;
+  color: gray;
+}
+
+li span {
+  cursor: pointer;
+}
+
+.delete-btn {
+  background: crimson;
+  padding: 4px 6px;
+  font-size: 14px;
+  border-radius: 4px;
+}
