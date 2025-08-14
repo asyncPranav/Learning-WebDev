@@ -1,0 +1,26 @@
+*{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  box-sizing: border-box;
+}
+
+.navbar{
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background: #202020;
+  margin-bottom: 3rem;
+}
+
+.navbar a{
+  display: inline-block;
+  padding: 0.8rem 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: crimson;
+}
+
+.navbar .active{
+  color: deepskyblue;
+}
