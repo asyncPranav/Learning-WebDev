@@ -1,0 +1,50 @@
+.container {
+  width: 90%;
+  max-width: 700px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: #f9f9f9;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  font-family: "Poppins", sans-serif;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #4caf50;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.text {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #444;
+  margin-bottom: 1rem;
+}
+
+.list {
+  margin-left: 1.5rem;
+  list-style-type: disc;
+  color: #333;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.footer {
+  margin-top: 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+  color: #777;
+}
