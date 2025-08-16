@@ -1,0 +1,102 @@
+.container {
+  width: 90%;
+  max-width: 800px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  border: 2px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.pasteLists {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.3rem;
+  margin-bottom: 3rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.pasteLists li {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.pasteLists li:hover {
+  transform: scale(1.04);
+  /* box-shadow: 0 6px 12px rgba(0,0,0,0.1); */
+}
+
+.pasteLists li strong {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #4caf50;
+}
+
+.pasteLists li p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-line-clamp: 2; /* show 2 lines only */
+  -webkit-box-orient: vertical;
+  color: #555;
+  font-size: 1.2rem;
+  margin: 0.5rem 0 1rem 0;
+}
+
+.pasteLists .buttonGroup {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  /* border: 1ps solid pink; */
+  /* background: red; */
+}
+
+.pasteLists .buttonGroup .button {
+  padding: 0.5rem 1.5rem;
+  border-radius: 4px;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.pasteLists .viewButton {
+  background-color: #2196f3;
+  color: white;
+}
+
+.pasteLists .editButton {
+  background-color: #ffc107;
+  color: white;
+}
+
+.pasteLists .deleteButton {
+  background-color: #f44336;
+  color: white;
+}
+
+.pasteLists .noPastes {
+  text-align: center;
+  color: #777;
+  font-style: italic;
+}
