@@ -74,6 +74,7 @@ const ViewPaste = () => {
           <SyntaxHighlighter
             language={ paste.content.split("\n")[0].replace(/```/, "") || "javascript" }
             style={vscDarkPlus}
+            codeTagProps={{ style: { fontSize: "1rem" } }}
             showLineNumbers
           >
             {paste.content.replace(/```.*\n/, "")}{" "} {/* remove first line with ```language */}
