@@ -4,7 +4,7 @@ import {ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css";
 
 import MainLayout from "./layouts/MainLayout";
-import About from "./components/About";
+import About from "./components/About/About";
 import Home from "./components/Home/Home";
 import PasteList from "./components/PasteList/PasteList";
 import ViewPaste from "./components/ViewPaste/ViewPaste";
