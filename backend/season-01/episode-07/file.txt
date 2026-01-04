@@ -1,0 +1,1 @@
+This file.txt has to be read by async.js
