@@ -13,10 +13,11 @@
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 
   <script>
-    const heading = React.createElement("h1", {}, "Hello from React !");
+    const heading = React.createElement("h1", {id: "heading", xyz: "abc"}, "Hello from React !");
     const root = ReactDOM.createRoot(document.getElementById("root"));
+    console.log(heading); // print object
     root.render(heading);
   </script>
-  
+
 </body>
 </html>
