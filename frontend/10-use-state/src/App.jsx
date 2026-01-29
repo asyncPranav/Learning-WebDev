@@ -1,4 +1,6 @@
 import { useState } from "react";
+import Student from "./Student";
+import Input from "./Input";
 
 const App = () => {
   const [count, setCount] = useState(0);
@@ -28,6 +30,14 @@ const Counter = ({ count, setCount }) => {
       <button onClick={increment}><b>Increment</b></button>
       <button onClick={decrement}><b>Decrement</b></button>
       <button onClick={reset}><b>Reset</b></button>
+      <br />
+      <br />
+      <hr />
+      <Student />
+      <br />
+      <br />
+      <hr />
+      <Input />
     </div>
   );
 };
