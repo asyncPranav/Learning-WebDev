@@ -43,7 +43,7 @@ const App = () => {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <h2>Expense Tracker App 💸</h2>
+        <h2>Expense Tracker App</h2>
         <input
           type="number"
           name="amount"
@@ -70,25 +70,39 @@ const App = () => {
         </select>
         <button type="submit">Add</button>
       </form>
-      <ul>
-        {entries.map((expense, index) => (
-          <li key={expense.id}>
-            <div className="wrapper">
-              <div>{index + 1}.</div>
-              <div>{expense.amount} rs</div>
-              <div>{expense.category}</div>
-            </div>
-            <button onClick={() => deleteExpense(expense.id)}>❌</button>
-          </li>
-        ))}
-        {entries.length > 0 && (
-          <div className="total">
-            <span>Total</span>
-            <span>:</span>
-            <span>{getTotalExpense()} rs</span>
-          </div>
-        )}
-      </ul>
+
+      {entries.length > 0 && (
+        <table border="1" cellPadding="8">
+          <thead>
+            <tr>
+              <th>S.N</th>
+              <th>Amount (Rs)</th>
+              <th>Category</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {entries.map((entry, index) => (
+              <tr key={entry.id}>
+                <td>{index + 1}</td>
+                <td>{entry.amount}</td>
+                <td>{entry.category}</td>
+                <td>
+                  <button onClick={() => deleteExpense(entry.id)}>❌</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+
+          <tfoot>
+            <tr>
+              <th colSpan={2}>Total</th>
+              <th colSpan={2}>{getTotalExpense()} Rs</th>
+            </tr>
+          </tfoot>
+        </table>
+      )}
     </>
   );
 };
