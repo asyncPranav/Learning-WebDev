@@ -1,0 +1,138 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  /* background: #0b0e14;  */
+  background: #1a202d; 
+}
+
+/* App Container */
+.appContainer {
+  width: 80%;
+  margin: auto;
+  margin-top: 3em;
+}
+
+/* Heading */
+.appContainer h1 {
+  text-align: center;
+  font-size: 3rem;
+  color: #a78bfa; /* purple accent */
+  margin-bottom: 2em;
+}
+
+/* ---------------- FORM ---------------- */
+.expenseForm {
+  background: #1a202d; 
+  border: 2px solid #232f3f;
+  border-radius: 1em;
+  box-shadow: 0px 0px 10px rgba(36, 47, 72, 0.8);
+  padding: 3em;
+  display: flex;
+  gap: 2em;
+  flex-wrap: wrap;
+  margin-bottom: 3em;
+}
+
+.expenseForm input {
+  flex: 1 1 20rem;
+  background: transparent;
+  border: 2px solid #232f3f;
+  border-radius: 0.6em;
+  padding: 0.8em;
+  font-size: 1.6rem;
+  color: #e5e7eb;
+}
+
+.expenseForm input::placeholder {
+  color: #9ca3af;
+}
+
+.expenseForm input:focus {
+  border-color: #a78bfa;
+  outline: none;
+}
+
+/* Add Button */
+.expenseForm button {
+  flex: 1 1 100%;
+  background: #a78bfa;
+  border: 2px solid #7c3aed;
+  border-radius: 0.6em;
+  padding: 0.8em;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #0b0e14;
+  cursor: pointer;
+}
+
+.expenseForm button:hover {
+  background: #7c3aed;
+}
+
+/* ---------------- LIST ---------------- */
+.expenseList {
+  background: #19202f; 
+  border: 2px solid #232f3f;
+  border-radius: 1em;
+  box-shadow: 0px 0px 10px rgba(36, 47, 72, 0.8);
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  gap: 1.8em;
+  font-size: 0.9rem;
+}
+
+/* Expense Item */
+.expenseItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em 1.4em;
+  border: 2px solid #232f3f;
+  border-radius: 0.8em;
+  background: #151b29;
+}
+
+.expenseItem span {
+  font-size: 1.8rem;
+  color: #e5e7eb;
+}
+
+/* Delete Button */
+.expenseItem button {
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  color: #fb7185; /* rose */
+  cursor: pointer;
+}
+
+.expenseItem button:hover {
+  transform: scale(1.15);
+}
+
+/* ---------------- TOTAL ---------------- */
+.total {
+  margin-top: 3em;
+  text-align: center;
+  font-size: 2.2rem;
+  color: #a78bfa;
+}
+
+/* No Expenses */
+.noExpenses {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #9ca3af;
+  padding: 2em 0;
+}
