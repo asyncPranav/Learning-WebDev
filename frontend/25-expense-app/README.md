@@ -21,7 +21,11 @@ A simple and intuitive expense tracking application built with React that helps 
 src/
   ├── App.jsx          
   ├── App.css          
-  └── main.jsx         
+  ├── main.jsx         
+  └── components/
+      ├── ExpenseForm.jsx
+      ├── ExpenseItem.jsx
+      └── ExpenseList.jsx
 ```
 
 ## How to Use
