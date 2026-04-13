@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+</head>
+<body>
+  <h1><%= title %></h1>
+  <p><%= message %></p>
+  <hr>
+    
+  <!-- Conditional rendering based on message variable -->
+  <% if (message) { %>
+    <p>This message is only shown if the message variable is not empty.</p>
+    <p><%= message %></p>
+    <% } else { %>
+     <p>This message is shown if message variable is empty</p>
+  <% }  %>
+     
+  <!-- Loop through an array of items -->
+  <% let items = ["apple", "banana", "cherry"] %>
+  <ul>
+   <p>Loop through array of items defined in the ejs file:</p>
+   <% items.forEach(fruit => { %>
+     <li> <%= fruit %></li>
+   <% }) %>
+  </ul>
+  <hr>
+
+  <!-- Loop through an array of items passed from the app.render -->
+  <ul>
+   <p>Loop through array of items passed from the app.render:</p>
+   <% users.forEach(user => { %>
+     <li> <%= user %></li>
+   <% }); %>
+  </ul>
+  <hr>
+
+<!-- Student Data Table : Getting students array of objects from the app.render -->
+  <table border="1" width="400px">
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>City</th>
+    </tr>
+    <% students.forEach(student => { %>
+      <tr>
+        <td><%= student.name %></td>
+        <td><%= student.age %></td>
+        <td><%= student.city %></td>
+      </tr>
+    <% }); %>
+  </table>
+
+
+</body>
+</html>
