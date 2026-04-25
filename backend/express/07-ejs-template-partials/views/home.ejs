@@ -1,0 +1,42 @@
+<%- include("header") %>
+
+<!-- FORM SECTION -->
+<div class="row mb-4">
+  <div class="col-md-6">
+
+    <form action="/submit" method="POST" class="card p-4 shadow-sm border-0 ">
+
+      <div class="mb-3">
+        <label for="myname" class="form-label">Name</label>
+
+        <input 
+          type="text"
+          class="form-control"
+          name="myname"
+          id="myname"
+          placeholder="Enter your name"
+          required
+        />
+      </div>
+
+      <button type="submit" class="btn btn-success">
+        Submit
+      </button>
+
+    </form>
+
+  </div>
+</div>
+
+<!-- MESSAGE SECTION -->
+<% if (message) { %>
+  <div class="row mb-4">
+    <div class="col-md-6">
+      <div class="alert alert-info">
+        <%= message %>
+      </div>
+    </div>
+  </div>
+<% } %>
+
+<%- include("footer") %>
