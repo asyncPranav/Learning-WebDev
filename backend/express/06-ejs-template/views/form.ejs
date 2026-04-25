@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EJS Form</title>
+
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+</head>
+
+<body>
+  <div class="container py-4">
+
+    <!-- Header -->
+    <div class="row mb-4">
+      <div class="col">
+        <div class="bg-success text-white p-3 rounded">
+          <h1 class="mb-0">EJS Template - II</h1>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form -->
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <form action="/submit" method="POST">
+          
+          <div class="mb-3">
+            <label for="myname" class="form-label">Name</label>
+            <input 
+              type="text" 
+              class="form-control"
+              name="myname" 
+              id="myname" 
+              placeholder="Enter your name"
+              required
+            />
+          </div>
+
+          <button type="submit" class="btn btn-primary">
+            Submit
+          </button>
+
+        </form>
+      </div>
+    </div>
+
+    <!-- Message -->
+    <% if (typeof message !== "undefined" && message) { %>
+      <div class="row mb-4">
+        <div class="col-md-6">
+          <div class="alert alert-info">
+            <%= message %>
+          </div>
+        </div>
+      </div>
+    <% } %>
+
+    <!-- Footer -->
+    <div class="row">
+      <div class="col">
+        <div class="bg-warning p-2 rounded">
+          <marquee>Made by asyncpranav</marquee>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
