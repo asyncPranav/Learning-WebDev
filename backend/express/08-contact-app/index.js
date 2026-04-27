@@ -227,17 +227,30 @@ app.post("/add-contact", async (req, res) => {
   res.redirect("/")
  */
 
-  // mongoose-method -> we can also remove variable contact since we are not reusing it 
+  // mongoose-method -> we can also remove variable contact since we are not reusing it
   await Contact.create(req.body);
   res.redirect("/");
-
 });
 
-app.get("/update-contact/:id", (req, res) => {
-  res.render("update-contact");
+app.get("/update-contact/:id", async (req, res) => {
+  const contact = await Contact.findById(req.params.id);
+  res.render("update-contact", { contact: contact });
 });
 
-app.post("/update-contact/:id", (req, res) => {});
+app.post("/update-contact/:id", async (req, res) => {
+  // res.send(req.body)
+
+  // if form input field's names are same as key name in your db
+  await Contact.findByIdAndUpdate(req.params.id, req.body);
+  res.redirect("/");
+
+  // if form input field's names are is same as key name in your db - Destructure req.body
+  /*   
+  const { first_name, last_name, email, phone, address } = req.body;
+  await Contact.findByIdAndUpdate(req.params.id, { first_name, last_name, email, phone, address } );
+  res.redirect("/");
+ */
+});
 
 app.get("/delete-contact/:id", (req, res) => {});
 
