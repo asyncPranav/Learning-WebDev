@@ -252,7 +252,10 @@ app.post("/update-contact/:id", async (req, res) => {
  */
 });
 
-app.get("/delete-contact/:id", (req, res) => {});
+app.get("/delete-contact/:id", async (req, res) => {
+  await Contact.findByIdAndDelete(req.params.id);
+  res.redirect("/");
+});
 
 app.listen(PORT, () => {
   console.log("Server started at port 3000");
