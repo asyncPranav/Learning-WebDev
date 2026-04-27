@@ -196,7 +196,7 @@ app.get("/show-contact/:id", async (req, res) => {
   // mongodb-method
   // const contact = await Contact.findOne({ _id: req.params.id });
   // res.json(contact)
-  
+
   // mongoose-method (easier)
   const contact = await Contact.findById(req.params.id);
   // res.json(contact)
@@ -207,7 +207,31 @@ app.get("/add-contact", (req, res) => {
   res.render("add-contact");
 });
 
-app.post("/add-contact", (req, res) => {});
+app.post("/add-contact", async (req, res) => {
+  // res.send(req.body)
+  // mongodb-method
+  /*   
+  const contact = await Contact.insertOne({
+    first_name: req.body.first_name,
+    last_name: req.body.last_name,
+    email: req.body.email,
+    phone: req.body.phone,
+    address: req.body.address,
+  });
+  res.redirect("/"); 
+  */
+
+  // mongoose-method (easier)
+  /*   
+  const contact = await Contact.create(req.body)
+  res.redirect("/")
+ */
+
+  // mongoose-method -> we can also remove variable contact since we are not reusing it 
+  await Contact.create(req.body);
+  res.redirect("/");
+
+});
 
 app.get("/update-contact/:id", (req, res) => {
   res.render("update-contact");
