@@ -2,11 +2,11 @@
 
   <div class="max-w-2xl mx-auto">
 
-    <div class="bg-[#222224] border border-white/[0.07] rounded-2xl p-8 flex flex-col gap-6">
+    <div class="bg-[#222224] border border-white/[0.07] rounded-2xl p-8 flex flex-col gap-6 overflow-hidden">
 
       <!-- Title + date -->
-      <div class="flex flex-col gap-2">
-        <h1 class="text-2xl font-bold tracking-tight text-[#f0f0f2] leading-snug">
+      <div class="flex flex-col gap-2 min-w-0">
+        <h1 class="text-2xl font-bold tracking-tight text-[#f0f0f2] leading-snug break-words overflow-wrap-anywhere">
           <%= note.title %>
         </h1>
         <span class="text-xs text-[#6e6e7a]/60">
@@ -18,17 +18,17 @@
       <div class="h-px bg-white/[0.06]"></div>
 
       <!-- Content -->
-      <div class="text-sm text-[#c0c0c8] leading-relaxed whitespace-pre-wrap">
+      <div class="text-sm text-[#c0c0c8] leading-relaxed whitespace-pre-wrap break-words overflow-wrap-anywhere min-w-0">
         <%= note.content %>
       </div>
 
       <div class="h-px bg-white/[0.06]"></div>
 
       <!-- Actions -->
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-3 flex-wrap">
 
         <a href="/edit/<%= note._id %>"
-          class="inline-flex items-center gap-2 text-sm font-medium text-[#a3e635] px-5 py-2.5 rounded-xl bg-[#a3e635]/10 border border-[#a3e635]/20 hover:bg-[#a3e635]/20 hover:border-[#a3e635]/40 transition-all no-underline">
+          class="inline-flex items-center gap-2 text-sm font-medium text-[#fbbf24] px-5 py-2.5 rounded-xl bg-[#fbbf24]/10 border border-[#fbbf24]/20 hover:bg-[#fbbf24]/20 hover:border-[#fbbf24]/40 transition-all no-underline">
           <i class="fa-solid fa-pen"></i> Edit
         </a>
 
