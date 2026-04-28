@@ -1,0 +1,54 @@
+<%- include("partials/header") %>
+
+  <div class="max-w-2xl mx-auto">
+
+    <div class="bg-[#222224] border border-white/[0.07] rounded-2xl p-8 flex flex-col gap-6">
+
+      <!-- Title + date -->
+      <div class="flex flex-col gap-2">
+        <h1 class="text-2xl font-bold tracking-tight text-[#f0f0f2] leading-snug">
+          <%= note.title %>
+        </h1>
+        <span class="text-xs text-[#6e6e7a]/60">
+          <i class="fa-regular fa-clock mr-1"></i>
+          <%= note.createdAt ? note.createdAt.toDateString() : "" %>
+        </span>
+      </div>
+
+      <div class="h-px bg-white/[0.06]"></div>
+
+      <!-- Content -->
+      <div class="text-sm text-[#c0c0c8] leading-relaxed whitespace-pre-wrap">
+        <%= note.content %>
+      </div>
+
+      <div class="h-px bg-white/[0.06]"></div>
+
+      <!-- Actions -->
+      <div class="flex items-center gap-3">
+
+        <a href="/edit/<%= note._id %>"
+          class="inline-flex items-center gap-2 text-sm font-medium text-[#a3e635] px-5 py-2.5 rounded-xl bg-[#a3e635]/10 border border-[#a3e635]/20 hover:bg-[#a3e635]/20 hover:border-[#a3e635]/40 transition-all no-underline">
+          <i class="fa-solid fa-pen"></i> Edit
+        </a>
+
+        <form action="/delete/<%= note._id %>" method="POST">
+          <button type="submit"
+            class="inline-flex items-center gap-2 text-sm font-medium text-[#f04848] px-5 py-2.5 rounded-xl border border-[#f04848]/20 hover:border-[#f04848]/40 hover:bg-[#f04848]/10 transition-all cursor-pointer font-[inherit]"
+            style="background-color: rgba(240,72,72,0.08);">
+            <i class="fa-solid fa-trash"></i> Delete
+          </button>
+        </form>
+
+        <a href="/"
+          class="inline-flex items-center gap-2 text-sm font-medium text-[#6e6e7a] px-5 py-2.5 rounded-xl bg-white/[0.04] border border-white/[0.07] hover:text-[#f0f0f2] hover:border-white/[0.14] transition-all no-underline">
+          <i class="fa-solid fa-arrow-left"></i> Back
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+<%- include("partials/footer") %>

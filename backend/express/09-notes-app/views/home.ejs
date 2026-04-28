@@ -1,0 +1,88 @@
+<%- include("partials/header") %>
+
+  <h1 class="text-2xl font-bold tracking-tight text-[#f0f0f2] mb-7">My Notes</h1>
+
+  <% if (notes && notes.length> 0) { %>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+      <% notes.forEach(note=> { %>
+
+        <div
+          class="bg-[#222224] border border-white/[0.07] rounded-2xl p-5 flex flex-col justify-between gap-4 hover:border-[#4ade80]/20 hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-[#4ade80]/5 transition-all duration-200"
+          style="min-height: 200px;">
+
+          <!-- Top -->
+          <div class="flex flex-col gap-2">
+            <h2 class="text-base font-semibold text-[#f0f0f2] tracking-tight leading-snug">
+              <%= note.title %>
+            </h2>
+            <p class="text-sm text-[#6e6e7a] leading-relaxed line-clamp-3">
+              <%= note.content %>
+            </p>
+          </div>
+
+          <!-- Bottom -->
+          <div class="flex flex-col gap-3">
+
+            <div class="h-px bg-white/[0.06]"></div>
+
+            <div class="flex items-center justify-between">
+
+              <span class="text-xs text-[#6e6e7a]/60">
+                <i class="fa-regular fa-clock mr-1"></i>
+                <%= note.createdAt ? note.createdAt.toDateString() : "" %>
+              </span>
+
+              <div class="flex items-center gap-1.5">
+
+                <a href="/view/<%= note._id %>"
+                  class="inline-flex items-center gap-1.5 text-xs font-medium text-[#22d3ee] px-2.5 py-1.5 rounded-lg bg-[#22d3ee]/10 border border-[#22d3ee]/20 hover:bg-[#22d3ee]/20 hover:border-[#22d3ee]/40 transition-all no-underline">
+                  <i class="fa-solid fa-eye"></i> View
+                </a>
+
+                <a href="/edit/<%= note._id %>"
+                  class="inline-flex items-center gap-1.5 text-xs font-medium text-[#fbbf24] px-2.5 py-1.5 rounded-lg bg-[#fbbf24]/10 border border-[#fbbf24]/20 hover:bg-[#fbbf24]/20 hover:border-[#fbbf24]/40 transition-all no-underline">
+                  <i class="fa-solid fa-pen"></i> Edit
+                </a>
+
+                <form action="/delete/<%= note._id %>" method="POST">
+                  <button type="submit"
+                    class="inline-flex items-center gap-1.5 text-xs font-medium text-[#f04848] px-2.5 py-1.5 rounded-lg border border-[#f04848]/20 hover:bg-[#f04848]/10 hover:border-[#f04848]/40 transition-all cursor-pointer font-[inherit]"
+                    style="background-color: rgba(240,72,72,0.08);">
+                    <i class="fa-solid fa-trash"></i> Delete
+                  </button>
+                </form>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <% }) %>
+
+    </div>
+
+    <% } else { %>
+
+      <div class="flex flex-col items-center justify-center h-full min-h-[60vh] text-[#6e6e7a]">
+        <div class="w-14 h-14 rounded-2xl bg-[#222224] border border-[#4ade80]/15 grid place-items-center mb-5">
+          <svg width="22" height="22" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M7.5 13C7.5 13 2 9.5 2 5.5C2 3.567 3.567 2 5.5 2C6.45 2 7.311 2.384 7.5 2.5C7.689 2.384 8.55 2 9.5 2C11.433 2 13 3.567 13 5.5C13 9.5 7.5 13 7.5 13Z"
+              stroke="#4ade80" stroke-width="1.2" stroke-linejoin="round" />
+            <line x1="7.5" y1="5" x2="7.5" y2="12" stroke="#4ade80" stroke-width="1" stroke-linecap="round" />
+          </svg>
+        </div>
+        <p class="text-base mb-1 text-[#f0f0f2] font-medium">No notes yet</p>
+        <p class="text-sm text-[#6e6e7a] mb-5">Start writing something down.</p>
+        <a href="/new"
+          class="text-sm font-medium text-[#191919] bg-[#4ade80] border border-[#4ade80]/40 px-5 py-2 rounded-lg hover:opacity-85 transition-all no-underline">
+          + Create your first note
+        </a>
+      </div>
+
+      <% } %>
+
+        <%- include("partials/footer") %>

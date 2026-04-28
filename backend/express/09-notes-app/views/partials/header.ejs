@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leafnote</title>
+
+  <script src="https://kit.fontawesome.com/a2fa536777.js" crossorigin="anonymous" defer></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Geist', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .line-clamp-3 {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  </style>
+</head>
+
+<body class="bg-[#191919] text-[#f0f0f2] font-sans min-h-screen flex flex-col">
+
+  <!-- Navbar -->
+  <nav class="sticky top-0 z-50 border-b border-white/[0.07] bg-[#191919]/80 backdrop-blur-xl">
+    <div class="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
+
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-3 text-lg font-semibold text-[#f0f0f2] no-underline tracking-tight">
+        <span class="w-9 h-9 rounded-xl bg-[#4ade80]/10 border border-[#4ade80]/25 grid place-items-center">
+          <svg width="20" height="20" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M7.5 13C7.5 13 2 9.5 2 5.5C2 3.567 3.567 2 5.5 2C6.45 2 7.311 2.384 7.5 2.5C7.689 2.384 8.55 2 9.5 2C11.433 2 13 3.567 13 5.5C13 9.5 7.5 13 7.5 13Z"
+              stroke="#4ade80" stroke-width="1.2" stroke-linejoin="round" />
+            <line x1="7.5" y1="5" x2="7.5" y2="12" stroke="#4ade80" stroke-width="1" stroke-linecap="round" />
+          </svg>
+        </span>
+        Leafnote
+      </a>
+
+      <!-- Links -->
+      <div class="flex items-center gap-2">
+
+        <a href="/" target="_blank"
+          class="text-sm font-medium text-[#6e6e7a] px-3 py-1.5 rounded-[9px] bg-white/[0.04] border border-white/[0.07] hover:text-[#f0f0f2] hover:border-white/[0.14] transition-all">
+          <i class="fa-solid fa-house"></i>
+          Home
+        </a>
+        <a href="https://github.com/asyncpranav" target="_blank"
+          class="text-sm font-medium text-[#6e6e7a] px-3 py-1.5 rounded-[9px] bg-white/[0.04] border border-white/[0.07] hover:text-[#f0f0f2] hover:border-white/[0.14] transition-all">
+          <i class="fa-brands fa-github"></i>
+          Github
+        </a>
+        <a href="/new"
+          class="text-sm font-medium text-[#191919] px-4 py-1.5 rounded-[9px] bg-[#4ade80] border border-[#4ade80]/40 hover:opacity-85 transition-all font-semibold">
+          <i class="fa-solid fa-plus"></i>
+          New Note
+        </a>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- Page -->
+  <div class="flex-1 max-w-6xl w-full mx-auto px-6 py-10 pb-16">
