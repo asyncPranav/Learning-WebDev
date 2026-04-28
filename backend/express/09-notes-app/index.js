@@ -1,28 +1,25 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const Notes = require("./models/notes.model");
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
-// Middleware to parse JSON bodies
+// Middleware
 app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static("public"));
 
-// Connect to MongoDB
-mongoose
-  .connect("mongodb://localhost:27017/notes-app")
-  .then(() => console.log("Connected to MongoDB"))
-  .catch((err) => console.error("Error connecting to MongoDB:", err));
-
 // Routes
-
 app.get("/", async (req, res) => {
-  const notes = await Notes.find();
-  // res.json(notes)
-  res.render("home", { notes: notes });
+  try {
+    const notes = await Notes.find();
+    res.render("home", { notes });
+  } catch (err) {
+    res.status(500).send("Database error");
+  }
 });
 
 app.get("/new", (req, res) => {
@@ -30,8 +27,12 @@ app.get("/new", (req, res) => {
 });
 
 app.get("/view/:id", async (req, res) => {
-  const note = await Notes.findById(req.params.id);
-  res.render("show", { note: note });
+  try {
+    const note = await Notes.findById(req.params.id);
+    res.render("show", { note });
+  } catch (err) {
+    res.redirect("/");
+  }
 });
 
 app.post("/new", async (req, res) => {
@@ -40,9 +41,12 @@ app.post("/new", async (req, res) => {
 });
 
 app.get("/edit/:id", async (req, res) => {
-  const note = await Notes.findById(req.params.id);
-  // res.json(note)
-  res.render("edit", { note: note });
+  try {
+    const note = await Notes.findById(req.params.id);
+    res.render("edit", { note });
+  } catch (err) {
+    res.redirect("/");
+  }
 });
 
 app.post("/edit/:id", async (req, res) => {
@@ -55,7 +59,18 @@ app.post("/delete/:id", async (req, res) => {
   res.redirect("/");
 });
 
-// start server
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+// Connect then start server
+async function connectDB() {
+  try {
+    await mongoose.connect(process.env.MONGO_URL);
+    console.log("MongoDB Connected");
+    app.listen(PORT, () => {
+      console.log(`Server running on http://localhost:${PORT}`);
+    });
+  } catch (err) {
+    console.log("DB Error:", err);
+    process.exit(1);
+  }
+}
+
+connectDB();
