@@ -4,9 +4,9 @@
 
 ## 📸 Preview
 
-![Leafnote Preview](./screenshots/leafnote01.png)
-![Leafnote Preview](./screenshots/leafnote02.png)
-![Leafnote Preview](./screenshots/leafnote03.png)
+![Leafnote Preview](./Screenshots/leafnote01.png)
+![Leafnote Preview](./Screenshots/leafnote02.png)
+![Leafnote Preview](./Screenshots/leafnote03.png)
 
 <br/>
 
