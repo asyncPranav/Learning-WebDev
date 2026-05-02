@@ -1,0 +1,41 @@
+<%- include("partials/header") %>
+
+  <div class="flex flex-col items-center justify-center text-center min-h-[70vh]">
+
+    <!-- 404 Text -->
+    <h1 class="mt-4 text-5xl sm:text-6xl font-bold tracking-tight text-[#f0f0f2] mb-3">
+      404
+    </h1>
+
+    <% if (typeof message !== "undefined" ) { %>
+      <h2 class="text-lg sm:text-xl font-medium text-[#f0f0f2] mb-2">
+        <%= message %>
+      </h2>
+      <% } else { %>
+        <h2 class="text-lg sm:text-xl font-medium text-[#f0f0f2] mb-2">
+          Page Not Found
+        </h2>
+      <% } %>
+
+          <p class="text-sm text-[#6e6e7a] max-w-md mb-6 leading-relaxed">
+            The page you’re looking for doesn’t exist or may have been moved.
+          </p>
+
+          <!-- Actions -->
+          <div class="flex items-center gap-3">
+
+            <a href="/"
+              class="text-sm font-medium text-[#191919] bg-[#4ade80] border border-[#4ade80]/40 px-5 py-2 rounded-lg hover:opacity-90 transition-all no-underline">
+              <i class="fa-solid fa-house mr-1"></i> Go Home
+            </a>
+
+            <a href="/add-contact"
+              class="text-sm font-medium text-[#6e6e7a] px-5 py-2 rounded-lg border border-white/[0.08] hover:text-[#f0f0f2] hover:border-white/[0.15] transition-all no-underline">
+              <i class="fa-solid fa-plus mr-1"></i> New Contact
+            </a>
+
+          </div>
+
+  </div>
+
+  <%- include("partials/footer") %>
