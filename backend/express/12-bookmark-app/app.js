@@ -14,9 +14,9 @@ app.set("view engine", "ejs");
 
 // routes
 app.use("/", bookmarkRoutes);
-// app.use((req, res) => {
-//   res.status(404).render("404", { title: "Page Not Found" });
-// });
+app.use((req, res) => {
+  res.status(404).render("404", { title: "Page Not Found" });
+});
 
 // start server
 const startServer = async() => {
