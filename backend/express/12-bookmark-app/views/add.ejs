@@ -1,0 +1,119 @@
+<%- include("partials/header") %>
+
+  <main class="flex-1">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 py-8">
+
+      <!-- Page header row -->
+      <div class="flex items-center justify-between mb-8 gap-4">
+        <div>
+          <h1 class="text-base font-semibold" style="color:#e2e2e0;">Add link</h1>
+          <p class="text-xs mt-0.5" style="color:#4b4b52;">Save a new bookmark to your library.</p>
+        </div>
+        <a href="/"
+          class="flex items-center gap-1.5 text-xs font-medium no-underline transition-colors"
+          style="color:#4b4b52;"
+          onmouseover="this.style.color='#e2e2e0'" onmouseout="this.style.color='#4b4b52'">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M7.5 2L3.5 6L7.5 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          back to links
+        </a>
+      </div>
+
+      <form action="/add" method="POST">
+
+        <div class="space-y-2 mb-4">
+
+          <!-- Title -->
+          <div class="flex items-center gap-4 px-4 py-3.5 rounded-lg" style="border:1px solid #1e1e20;">
+            <div class="w-7 h-7 rounded-md flex items-center justify-center shrink-0"
+              style="background:#1e1e20;">
+              <i class="fa-solid fa-heading text-[10px]" style="color:#4b4b52;"></i>
+            </div>
+            <div class="flex-1 min-w-0">
+              <label class="block text-[10px] font-medium mb-1" style="color:#4b4b52;">Title</label>
+              <input
+                type="text"
+                name="title"
+                required
+                placeholder="e.g. MDN Web Docs"
+                class="w-full text-sm rounded-lg px-3 py-1.5"
+                style="font-family:inherit;"
+              >
+            </div>
+          </div>
+
+          <!-- URL -->
+          <div class="flex items-center gap-4 px-4 py-3.5 rounded-lg" style="border:1px solid #1e1e20;">
+            <div class="w-7 h-7 rounded-md flex items-center justify-center shrink-0"
+              style="background:#1e1e20;">
+              <i class="fa-solid fa-link text-[10px]" style="color:#4b4b52;"></i>
+            </div>
+            <div class="flex-1 min-w-0">
+              <label class="block text-[10px] font-medium mb-1" style="color:#4b4b52;">URL</label>
+              <input
+                type="url"
+                name="url"
+                required
+                placeholder="https://..."
+                class="w-full text-sm rounded-lg px-3 py-1.5"
+                style="font-family:inherit;"
+              >
+            </div>
+          </div>
+
+          <!-- Category -->
+          <div class="flex items-center gap-4 px-4 py-3.5 rounded-lg" style="border:1px solid #1e1e20;">
+            <div class="w-7 h-7 rounded-md flex items-center justify-center shrink-0"
+              style="background:#1e1e20;">
+              <i class="fa-solid fa-tag text-[10px]" style="color:#4b4b52;"></i>
+            </div>
+            <div class="flex-1 min-w-0">
+              <label class="block text-[10px] font-medium mb-1" style="color:#4b4b52;">Category</label>
+              <div class="relative">
+                <select
+                  name="category"
+                  class="w-full text-sm rounded-lg px-3 py-1.5 appearance-none"
+                  style="font-family:inherit; cursor:pointer;"
+                >
+                  <% const cats = ['coding','education','resource','entertainment','news','other']; %>
+                  <% cats.forEach(function(cat) { %>
+                    <option value="<%= cat %>">
+                      <%= cat.charAt(0).toUpperCase() + cat.slice(1) %>
+                    </option>
+                  <% }); %>
+                </select>
+                <svg class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2"
+                  width="11" height="11" viewBox="0 0 12 12" fill="none">
+                  <path d="M2.5 4.5L6 8L9.5 4.5" stroke="#4b4b52" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Actions -->
+        <div class="flex items-center justify-end gap-2">
+          <a href="/"
+            class="flex items-center gap-1.5 px-4 py-2 rounded-lg no-underline text-xs font-medium transition-colors"
+            style="border:1px solid #1e1e20; background:#18181a; color:#6b6b72;"
+            onmouseover="this.style.color='#e2e2e0'" onmouseout="this.style.color='#6b6b72'">
+            <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
+              <path d="M2 2L10 10M10 2L2 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            cancel
+          </a>
+          <button type="submit" class="btn-primary text-xs px-4 py-2 rounded-lg flex items-center gap-1.5">
+            <i class="fa-solid fa-bookmark text-[10px]"></i>
+            save link
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+  </main>
+
+<%- include("partials/footer") %>

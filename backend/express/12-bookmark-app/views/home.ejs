@@ -1,0 +1,138 @@
+<%- include("partials/header") %>
+
+  <main class="flex-1">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 py-8">
+
+      <!-- Page header row -->
+      <div class="flex items-center justify-between mb-6 gap-4">
+
+        <div>
+          <h1 class="text-base font-semibold" style="color:#e2e2e0;">My links</h1>
+          <p class="text-xs mt-0.5" style="color:#4b4b52;">
+            <%= bookmarks.length %> saved
+          </p>
+        </div>
+
+        <!-- Search -->
+        <form action="/" method="get" class="flex items-center gap-2">
+          <% if (selectedCategory && selectedCategory !== 'all') { %>
+            <input type="hidden" name="category" value="<%= selectedCategory %>">
+          <% } %>
+          <div class="relative">
+            <i class="fa-solid fa-magnifying-glass absolute left-2.5 top-1/2 -translate-y-1/2 text-[10px]" style="color:#4b4b52;"></i>
+            <input
+              type="text"
+              name="search"
+              placeholder="search..."
+              value="<%= typeof searchQuery !== 'undefined' ? searchQuery : '' %>"
+              class="text-xs pl-7 pr-3 py-1.5 rounded-lg w-48"
+              style="font-family: inherit;"
+            >
+          </div>
+        </form>
+
+      </div>
+
+      <!-- Category filter pills -->
+      <div class="flex items-center gap-1.5 mb-6 overflow-x-auto pb-1" style="scrollbar-width: none;">
+        <% const categories = ['all','coding','education','resource','entertainment','news','other']; %>
+        <% categories.forEach(function(cat) { %>
+          <a
+            href="/?category=<%= cat %><%= typeof searchQuery !== 'undefined' && searchQuery ? '&search=' + searchQuery : '' %>"
+            class="filter-btn <%= selectedCategory === cat ? 'active' : '' %>"
+          ><%= cat %></a>
+        <% }); %>
+      </div>
+
+      <!-- Bookmark list -->
+      <% if (bookmarks.length > 0) { %>
+
+        <div class="space-y-2">
+
+          <% bookmarks.forEach(function(bookmark, i) { %>
+
+            <div class="link-row flex items-start gap-3 px-4 py-3.5 transition-colors rounded-lg" style="border: 1px solid #3d3d3d;">
+
+              <!-- Favicon -->
+              <div class="w-7 h-7 rounded-md flex items-center justify-center shrink-0 mt-0.5 overflow-hidden"
+                style="background:#1e1e20;">
+                <img
+                  src="https://www.google.com/s2/favicons?domain=<%= bookmark.url %>&sz=32"
+                  alt=""
+                  width="16"
+                  height="16"
+                  onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+                >
+                <i class="fa-solid fa-globe text-[10px]" style="color:#4b4b52; display:none;"></i>
+              </div>
+
+              <!-- Content -->
+              <div class="flex-1 min-w-0">
+
+                <div class="flex items-start justify-between gap-3 flex-wrap">
+
+                  <div class="min-w-0">
+                    <p class="text-sm font-medium leading-snug" style="color:#e2e2e0;">
+                      <%= bookmark.title %>
+                    </p>
+                    <p class="text-xs mt-0.5 url-text" style="color:#4b4b52;">
+                      <%= bookmark.url %>
+                    </p>
+                  </div>
+
+                  <!-- Category tag -->
+                  <span class="tag-pill tag-<%= bookmark.category %> shrink-0 mt-0.5">
+                    <%= bookmark.category %>
+                  </span>
+
+                </div>
+
+                <!-- Actions -->
+                <div class="flex items-center gap-3 mt-2.5">
+                  <a href="<%= bookmark.url %>" target="_blank" class="action-link action-open flex items-center gap-1">
+                    <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                    open
+                  </a>
+                  <a href="/edit/<%= bookmark._id %>" class="action-link action-edit flex items-center gap-1">
+                    <i class="fa-solid fa-pen text-[9px]"></i>
+                    edit
+                  </a>
+                  <form action="/delete/<%= bookmark._id %>" method="POST" class="inline">
+                    <button
+                      type="submit"
+                      onclick="return confirm('Delete this link?')"
+                      class="action-link action-delete flex items-center gap-1">
+                      <i class="fa-solid fa-trash text-[9px]"></i>
+                      delete
+                    </button>
+                  </form>
+                </div>
+
+              </div>
+            </div>
+
+          <% }); %>
+        </div>
+
+      <% } else { %>
+
+        <!-- Empty state -->
+        <div class="flex flex-col items-center justify-center py-20 text-center">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
+            style="background:#1c2e22;">
+            <i class="fa-solid fa-bookmark" style="color:#7eb88a; font-size:14px;"></i>
+          </div>
+          <p class="text-sm font-medium" style="color:#e2e2e0;">No links yet</p>
+          <p class="text-xs mt-1 mb-5" style="color:#4b4b52;">Start saving things that matter.</p>
+          <a href="/add" class="btn-primary text-xs px-4 py-2 rounded-lg no-underline flex items-center gap-1.5">
+            <i class="fa-solid fa-plus text-[10px]"></i>
+            Add your first link
+          </a>
+        </div>
+
+      <% } %>
+
+    </div>
+  </main>
+
+<%- include("partials/footer") %>

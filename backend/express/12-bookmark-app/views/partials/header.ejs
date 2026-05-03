@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StashLink</title>
+
+  <script src="https://kit.fontawesome.com/a2fa536777.js" crossorigin="anonymous" defer></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"DM Sans"', 'sans-serif'],
+          },
+          colors: {
+            surface:  '#18181a',
+            border:   '#272729',
+            muted:    '#6b6b72',
+            sage:     '#7eb88a',
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    * { -webkit-font-smoothing: antialiased; }
+    body { background-color: #111210; color: #e2e2e0; }
+
+    .tag-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      padding: 2px 8px;
+      border-radius: 99px;
+      text-transform: lowercase;
+    }
+    .tag-coding       { background: #1c2e22; color: #7eb88a; }
+    .tag-education    { background: #1e2535; color: #7ba8d4; }
+    .tag-resource     { background: #2a2217; color: #c4924a; }
+    .tag-entertainment{ background: #271e2e; color: #a87ec4; }
+    .tag-news         { background: #261e1e; color: #c47e7e; }
+    .tag-other        { background: #222222; color: #9b9b9b; }
+
+    select option { background: #18181a; color: #e2e2e0; }
+
+    input[type="text"], input[type="url"], select {
+      background: #18181a;
+      border: 1px solid #272729;
+      color: #e2e2e0;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    input[type="text"]:focus, input[type="url"]:focus, select:focus {
+      border-color: #7eb88a;
+    }
+    input[type="text"]::placeholder, input[type="url"]::placeholder { color: #4b4b52; }
+
+    .link-row:hover { background: #18181a; }
+
+    .btn-primary {
+      background: #7eb88a;
+      color: #0f1d12;
+      font-weight: 600;
+      transition: background 0.15s;
+    }
+    .btn-primary:hover { background: #6da87a; }
+
+    .nav-link {
+      color: #6b6b72;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+    .nav-link:hover { color: #e2e2e0; }
+
+    .action-link { font-size: 12px; font-weight: 500; transition: color 0.15s; }
+    .action-open   { color: #7eb88a; }
+    .action-edit   { color: #8db4d6; }
+    .action-delete { color: #c66d67; background: none; border: none; cursor: pointer; padding: 0; font-family: inherit; }
+
+    .filter-btn {
+      font-size: 12px;
+      font-weight: 500;
+      padding: 4px 12px;
+      border-radius: 99px;
+      color: #6b6b72;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.12s;
+      white-space: nowrap;
+      background: none;
+    }
+    .filter-btn:hover { color: #e2e2e0; border-color: #272729; }
+    .filter-btn.active { color: #7eb88a; border-color: #2a3e2e; background: #1a2a1e; }
+
+    .url-text {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 36ch;
+    }
+  </style>
+</head>
+
+<body class="font-sans min-h-screen flex flex-col">
+
+  <!-- Navbar -->
+  <nav style="border-bottom: 1px solid #272729; background: #111210;" class="sticky top-0 z-50">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 h-12 flex items-center justify-between gap-4">
+
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-2 no-underline shrink-0">
+        <div class="w-6 h-6 rounded-md grid place-items-center" style="background:#1c2e22;">
+          <i class="fa-solid fa-bookmark" style="color:#7eb88a; font-size:11px;"></i>
+        </div>
+        <span class="text-sm font-semibold tracking-tight" style="color:#e2e2e0;">
+          stash<span style="color:#7eb88a;">link</span>
+        </span>
+      </a>
+
+      <!-- Right -->
+      <div class="flex items-center gap-1.5">
+
+        <a href="https://x.com/asyncpranav" target="_blank"
+          class="nav-link flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg hover:bg-surface transition-colors text-xs">
+          <i class="fa-brands fa-x-twitter text-xs"></i>
+          <span class="hidden sm:inline">x</span>
+        </a>
+
+        <a href="https://github.com/asyncpranav" target="_blank"
+          class="nav-link flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg hover:bg-surface transition-colors text-xs">
+          <i class="fa-brands fa-github text-xs"></i>
+          <span class="hidden sm:inline">github</span>
+        </a>
+
+        <a href="/add" class="btn-primary text-xs px-3 py-1.5 rounded-lg flex items-center gap-1.5 no-underline">
+          <i class="fa-solid fa-plus text-[10px]"></i>
+          <span>Add link</span>
+        </a>
+
+      </div>
+
+    </div>
+  </nav>
+

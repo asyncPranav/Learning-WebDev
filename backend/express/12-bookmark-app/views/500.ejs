@@ -1,0 +1,57 @@
+<%- include("partials/header") %>
+
+  <main class="flex-1 flex items-center justify-center">
+    <div class="text-center px-4 py-20">
+
+      <!-- Code -->
+      <div class="mb-6">
+        <span class="font-semibold tabular-nums" style="font-size:72px; line-height:1; color:#1e1e20; letter-spacing:-4px;">500</span>
+      </div>
+
+      <!-- Icon -->
+      <div class="w-11 h-11 rounded-xl mx-auto mb-5 flex items-center justify-center" style="background:#261e1e;">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 6V9.5" stroke="#c47e7e" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="9" cy="12.5" r="0.75" fill="#c47e7e"/>
+          <path d="M7.33 2.88L1.45 13a1.84 1.84 0 0 0 1.58 2.75h11.94A1.84 1.84 0 0 0 16.55 13L10.67 2.88a1.84 1.84 0 0 0-3.34 0Z" stroke="#c47e7e" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <h1 class="text-sm font-semibold mb-1" style="color:#e2e2e0;">
+        <% if (typeof message !== 'undefined' && message) { %>
+          <%= message %>
+        <% } else { %>
+          Something went wrong
+        <% } %>
+      </h1>
+      <p class="text-xs mb-2 max-w-xs mx-auto" style="color:#4b4b52; line-height:1.7;">
+        The server ran into an unexpected error. Try again in a moment.
+      </p>
+
+
+
+      <div class="flex items-center justify-center gap-2">
+        <button onclick="window.location.reload()"
+          class="inline-flex items-center gap-1.5 text-xs font-medium px-4 py-2 rounded-lg"
+          style="background:#18181a; color:#6b6b72; border:1px solid #272729; cursor:pointer; font-family:inherit; transition:color .15s;"
+          onmouseover="this.style.color='#e2e2e0'" onmouseout="this.style.color='#6b6b72'">
+          <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
+            <path d="M10 6A4 4 0 1 1 6 2.1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M6 1v2.5H8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          try again
+        </button>
+
+        <a href="/"
+          class="btn-primary inline-flex items-center gap-1.5 text-xs px-4 py-2 rounded-lg no-underline">
+          <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
+            <path d="M7.5 2L3.5 6L7.5 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          back to links
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+<%- include("partials/footer") %>
