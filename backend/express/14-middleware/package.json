@@ -1,0 +1,21 @@
+{
+  "name": "14-middleware",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "application-middleware": "nodemon application-middleware.js",
+    "router-middleware": "nodemon router-middleware.js",
+    "error-handling-middleware": "nodemon error-handling-middleware.js",
+    "builtin-middleware": "nodemon builtin-middleware.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^5.2.1",
+    "nodemon": "^3.1.14"
+  }
+}
