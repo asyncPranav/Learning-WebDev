@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Simple Form</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+  
+  <div class="bg-white p-8 rounded-xl shadow-md w-full max-w-md">
+    
+    <% if (errors && errors.length > 0) { %>
+      <div class="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
+        <ul class="text-sm space-y-1">
+          <% errors.forEach(err => { %>
+            <li class="list-disc ml-4"><%= err.path %> - <%= err.msg %></li>
+          <% }) %>
+        </ul>
+      </div>
+    <% } %>
+
+    <h2 class="text-xl font-semibold mb-6 text-center">Form Validation</h2>
+
+    <form action="/saveform" method="POST" class="space-y-4">
+
+      <!-- Username -->
+      <div>
+        <label class="block text-sm font-medium mb-1">Username</label>
+        <input type="text" name="username" placeholder="Enter your username"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+      </div>
+
+      <!-- Email -->
+      <div>
+        <label class="block text-sm font-medium mb-1">Email</label>
+        <input type="email" name="email" placeholder="Enter your email"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+      </div>
+
+      <!-- Password -->
+      <div>
+        <label class="block text-sm font-medium mb-1">Password</label>
+        <input type="password" name="password" placeholder="Enter password"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+      </div>
+
+      <!-- Age -->
+      <div>
+        <label class="block text-sm font-medium mb-1">Age</label>
+        <input type="number" name="age" placeholder="Enter age"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+      </div>
+
+      <!-- City -->
+      <div>
+        <label class="block text-sm font-medium mb-1">City</label>
+        <select 
+          name="city"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          <option value="">Select a city</option>
+          <option value="delhi">Delhi</option>
+          <option value="mumbai">Mumbai</option>
+          <option value="lucknow">Lucknow</option>
+          <option value="bangalore">Bangalore</option>
+        </select>
+      </div>
+
+      <!-- Submit -->
+      <button type="submit"
+        class="w-full bg-blue-600 text-white py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition">
+        Submit
+      </button>
+
+    </form>
+
+  </div>
+
+</body>
+
+</html>
