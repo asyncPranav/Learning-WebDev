@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Profile</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+  <div class="bg-white p-6 rounded shadow w-full max-w-md text-center">
+  
+    <!-- SHOW CURRENT IMAGE -->
+    <% if(profile.image) { %>
+      <img src="/uploads/<%= profile.image %>" class="w-24 h-24 object-cover rounded mb-2">
+    <% } %>
+
+
+    <h1 class="text-2xl font-bold mb-2">
+      <%= profile.name %>
+    </h1>
+
+    <p class="text-gray-600 mb-2">
+      <%= profile.email %>
+    </p>
+
+    <p class="text-gray-700 mb-4">
+      <%= profile.bio ? profile.bio : "No bio available" %>
+    </p>
+
+      
+    <a href="/"
+      class="bg-blue-500 text-white px-4 py-2 rounded inline-block">
+      Back Home
+    </a>
+
+  </div>
+
+</body>
+</html>

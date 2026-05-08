@@ -1,0 +1,87 @@
+<%- include("partials/header") %>
+
+<!-- Content -->
+<div class="max-w-5xl mx-auto px-4 py-6">
+
+  <% if (profiles && profiles.length > 0) { %>
+
+    <div class="space-y-4">
+
+      <% profiles.forEach(profile => { %>
+
+        <!-- Profile Card -->
+        <div class="bg-white rounded-xl shadow hover:shadow-md transition p-4 flex items-center gap-4">
+
+          <!-- Left: Circular Image -->
+          <% if (profile.image) { %>
+            <img 
+              src="/uploads/<%= profile.image %>" 
+              alt="<%= profile.name %>" 
+              class="w-20 h-20 rounded-full object-cover border"
+            >
+          <% } else { %>
+            <div class="w-20 h-20 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 text-xs">
+              No Image
+            </div>
+          <% } %>
+
+          <!-- Right: Info -->
+          <div class="flex-1">
+
+            <!-- Name -->
+            <h2 class="text-lg font-semibold text-gray-800">
+              <%= profile.name %>
+            </h2>
+
+            <!-- Email -->
+            <p class="text-sm text-gray-500">
+              <%= profile.email %>
+            </p>
+
+            <!-- Bio -->
+            <p class="text-sm text-gray-600 mt-1">
+              <%= profile.bio ? profile.bio : "No bio available" %>
+            </p>
+
+            <!-- Actions -->
+            <div class="mt-3 flex flex-wrap gap-2">
+
+              <a href="/profile/<%= profile._id %>"
+                 class="px-3 py-1 text-sm bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">
+                View
+              </a>
+
+              <a href="/edit/<%= profile._id %>"
+                 class="px-3 py-1 text-sm bg-yellow-500 text-white rounded-md hover:bg-yellow-600 transition">
+                Edit
+              </a>
+
+              <form action="/delete/<%= profile._id %>" method="post">
+                <button type="submit"
+                  class="px-3 py-1 text-sm bg-red-500 text-white rounded-md hover:bg-red-600 transition">
+                  Delete
+                </button>
+              </form>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      <% }) %>
+
+    </div>
+
+  <% } else { %>
+
+    <!-- Empty State -->
+    <div class="text-center mt-10">
+      <p class="text-gray-500">No profiles found</p>
+    </div>
+
+  <% } %>
+
+</div>
+
+<%- include("partials/footer") %>

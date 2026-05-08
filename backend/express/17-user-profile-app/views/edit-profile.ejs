@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Profile</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+  <div class="bg-white p-6 rounded shadow w-full max-w-md">
+
+    <h1 class="text-xl font-bold mb-4">Edit Profile</h1>
+
+    <form action="/edit/<%= profile._id %>" method="POST" enctype="multipart/form-data" class="space-y-3">
+
+      <input
+        type="text"
+        name="name"
+        value="<%= profile.name %>"
+        class="w-full border p-2 rounded"
+      />
+
+      <input
+        type="email"
+        name="email"
+        value="<%= profile.email %>"
+        class="w-full border p-2 rounded"
+      />
+
+      <textarea
+        name="bio"
+        class="w-full border p-2 rounded"
+      ><%= profile.bio %></textarea>
+
+      <!-- SHOW CURRENT IMAGE -->
+      <% if(profile.image) { %>
+        <img src="/uploads/<%= profile.image %>" class="w-24 h-24 object-cover rounded mb-2">
+      <% } %>
+
+      <!-- NEW IMAGE UPLOAD -->
+      <input
+        type="file"
+        name="image"
+        accept="image/*"
+        class="w-full border p-2 rounded bg-white"
+      />
+
+      <button class="bg-green-500 text-white px-4 py-2 rounded w-full">
+        Update
+      </button>
+
+      <a href="/"
+        class="bg-blue-500 text-white px-4 py-2 rounded inline-block">
+        Back Home
+      </a>
+
+    </form>
+
+  </div>
+
+</body>
+</html>
