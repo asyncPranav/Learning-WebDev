@@ -19,11 +19,17 @@ app.use(
       // By default, connect-mongo will create a collection named "sessions" in the specified MongoDB database to store session data. You can customize the collection name by providing the "collectionName" option when creating the MongoStore instance. For example:
       collectionName: "mySessions",
 
-      // We can also set the time-to-live (TTL) for sessions in MongoDB using the "ttl" option. This option specifies the duration (in seconds) for which a session should be stored in the database before it expires. For example, to set a TTL of 1 hour (3600 seconds), you can use:
-      ttl: 3600, // session expires after 1 hour : same as cookie maxAge, if ttl is set then you can remove cookie maxAge, because ttl will handle session expiration in MongoDB, and the cookie will simply be a reference to the session stored in the database. However, if you want to keep the cookie expiration in sync with the session expiration in MongoDB, you can set both ttl and cookie maxAge to the same value (e.g., 3600 seconds for 1 hour) to ensure that the session expires consistently on both the client and server sides.
-
+      // TTL (Time To Live) = how long session data stays in MongoDB (server side)
+      // After this time, session is automatically deleted from the database
+      // Unit: seconds
+      ttl: 3600, // 1 hour
     }),
-    cookie: { maxAge: 100 * 60 * 60 }, // session expires after 1 hour
+    // cookie.maxAge = how long the browser keeps the session cookie (client side)
+    // After this time, the browser deletes the cookie automatically
+    // Unit: milliseconds
+    cookie: {
+      maxAge: 1000 * 60 * 60, // 1 hour
+    },
   }),
 );
 
