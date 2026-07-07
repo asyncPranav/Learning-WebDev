@@ -1,0 +1,2 @@
+Hello from async write!
+This line was appended.
