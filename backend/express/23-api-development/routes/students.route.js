@@ -60,7 +60,7 @@ const validateObjectId = (req, res, next) => {
 router.get("/", async (req, res) => {
   try {
     const students = await Student.find();
-    res.json(students);
+    res.status(200).json(students);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -73,7 +73,7 @@ router.get("/:id", validateObjectId, async (req, res) => {
     if (!student) {
       return res.status(404).json({ message: "Student not found" });
     }
-    res.json(student);
+    res.status(200).json(student);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -111,6 +111,44 @@ router.post("/", upload.single("profile_pic"), async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+
+/* -----> Flow of create student route ( Not Optimised )
+
+  FLOW:
+
+  Client sends request
+          |
+          v
+  Multer middleware runs first
+  (upload.single("profile_pic"))
+          |
+          v
+  Image is saved in uploads folder
+          |
+          v
+  Route handler starts
+          |
+          v
+  Create Student object from req.body
+          |
+          v
+  Attach image path to Student object
+          |
+          v
+  Save student using newStudent.save()
+          |
+          +----------------+
+          |                |
+          v                v
+    Save successful    Save failed
+          |                |
+          v                v
+  Return 201          Delete uploaded image
+  response            using fs.unlink()
+                          |
+                          v
+                      Return 500 error
+*/
 
 // ==> cleaner approach for above code - create a student or add new student
 // router.post("/", upload.single("profile_pic"), async (req, res) => {
@@ -223,6 +261,96 @@ router.put(
     }
   },
 );
+
+/* 
+                  UPDATE REQUEST
+                        |
+                        |
+                  PUT /students/:id
+                        |
+                        |
+            validateObjectId middleware
+                        |
+              ---------------------
+              |                   |
+            Invalid              Valid
+              |                   |
+              ↓                   ↓
+        Send 400 Error      upload.single()
+                                    |
+                                    |
+                          ------------------
+                          |                |
+                      No image          New image uploaded
+                          |                |
+                          ↓                ↓
+                    req.file = null    Save image in uploads/
+                                            |
+                                            ↓
+                                Find student by ID
+                                            |
+                      --------------------------------
+                      |                              |
+                Student not found             Student found
+                      |                              |
+                      ↓                              ↓
+            Is new image uploaded?          Create updatedData
+                      |                              |
+            -------------------                      |
+            |                 |                      |
+          Yes                No                      |
+            |                 |                      |
+            ↓                 ↓                      ↓
+  Delete uploaded file    Return 404       Store old image path
+                                                |
+                                                ↓
+                                        Is new image uploaded?
+                                                |
+                                -------------------------------
+                                |                             |
+                              Yes                            No
+                                |                             |
+                                ↓                             ↓
+                      Add new image path          Keep old image
+                      to updatedData               unchanged
+                                |
+                                |
+                                ↓
+                    findByIdAndUpdate()
+                                |
+                  ------------------------------
+                  |                            |
+            Database update success       Database update fails
+                  |                            |
+                  ↓                            ↓
+        updatedStudent received        Delete new uploaded image
+                  |                            |
+                  |                            ↓
+                  |                     Throw error
+                  |                            |
+                  ↓                            ↓
+        Was new image uploaded?        Outer catch handles error
+                  |
+          -----------------
+          |               |
+        Yes              No
+          |
+          ↓
+  Is old image available?
+          |
+    --------------
+    |            |
+  Yes            No
+    |             |
+    ↓             ↓
+  Delete old     Nothing
+  image
+    |
+    ↓
+  Send updated student response
+
+*/
+
 
 // delete a student
 router.delete("/:id", validateObjectId, async (req, res) => {
