@@ -17,7 +17,7 @@ import updateStudentValidator from "../middlewares/updateStudentValidator.middle
 router
   .route("/")
   .get(getAllStudents)
-  .post(createStudentValidator, upload.single("profile"), createStudent); // The "profile" name must match the field name sent by the client
+  .post(upload.single("profile"), createStudentValidator, createStudent); // The "profile" name must match the field name sent by the client
 
 router
   .route("/:id")
