@@ -55,21 +55,20 @@ const createStudent = async (req, res, next) => {
 /* 
 POST /students
         |
+Image Uploaded
+        |
         ↓
-
 createStudentValidator
         |
         |
-   ----------------
-   |              |
- Invalid        Valid
-   |              |
-400 Error     multer.single()
-                  |
-                  ↓
-            Upload image
-                  |
-                  ↓
+   -----------------
+   |               |
+ Invalid         Valid
+   |               |
+deleteFile()       |
+   |               |
+400 Error          |
+                   ↓
         createStudent Controller
                   |
                   ↓
@@ -77,7 +76,7 @@ createStudentValidator
                   |
           -----------------
           |               |
-       Exists          New
+       Exists            New
           |               |
       ApiError       Student.create()
           |               |
@@ -86,8 +85,8 @@ createStudentValidator
           |       Success       Error
           |          |            |
           |       Response    deleteFile()
-          |
-      errorHandler
+          |                       |
+      errorHandler            errorHandler
 */
 
 const getStudentById = async (req, res, next) => {
@@ -353,3 +352,11 @@ ApiError(404)   Store profile path
           ↓
     Send response
 */
+
+export {
+  getAllStudents,
+  createStudent,
+  getStudentById,
+  updateStudentById,
+  deleteStudentById,
+};
