@@ -6,6 +6,9 @@ const studentsRouter = require("./routes/students.route");
 
 const multer = require("multer"); // for error handling in the error handling middleware for multer errors
 
+const cors = require("cors");
+const path = require("path");
+
 const PORT = process.env.PORT;
 
 // Connect to MongoDB
@@ -16,6 +19,14 @@ app.use(express.urlencoded({ extended: false }));
 
 // parse application/json
 app.use(express.json());
+
+// serve static files from the uploads directory
+// why below line is important: it allows the server to serve static files (like images) from the "uploads" directory. When a client requests a file from this directory, Express will look for the file in the specified path and serve it if found. This is essential for handling file uploads and making them accessible via URLs.
+// if we do not include this line, the server will not be able to serve the uploaded files, and clients will receive a 404 error when trying to access them.
+app.use("/uploads", express.static(path.join(__dirname, "uploads"))); 
+
+// use cors middleware to allow cross-origin requests
+app.use(cors());
 
 // use students router
 app.use("/api/students", studentsRouter);
