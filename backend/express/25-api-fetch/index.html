@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Students</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen text-gray-800">
+
+  <div class="max-w-3xl mx-auto px-4 py-10">
+
+    <h1 class="text-2xl font-semibold mb-6">Students</h1>
+
+    <!-- Top bar -->
+    <div class="flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between mb-6">
+      <input id="searchInput" type="text" placeholder="Search by name or email..."
+        class="w-full sm:w-72 border border-gray-300 rounded-md px-3 py-2 text-sm" />
+
+      <div class="flex gap-2 shrink-0">
+        <button id="refreshBtn"
+          class="text-sm px-4 py-2 rounded-md border border-gray-300 hover:bg-gray-100">
+          Refresh
+        </button>
+        <button id="createBtn"
+          class="bg-gray-900 text-white text-sm px-4 py-2 rounded-md hover:bg-gray-700">
+          + Create student
+        </button>
+      </div>
+    </div>
+
+    <!-- List -->
+    <div id="studentList" class="space-y-3"></div>
+
+  </div>
+
+  <!-- Create / Edit modal -->
+  <div id="formModalBackdrop" class="hidden fixed inset-0 bg-black/40 flex items-center justify-center p-4 z-50">
+    <div class="bg-white rounded-lg w-full max-w-md p-5">
+      <div class="flex items-center justify-between mb-4">
+        <h2 id="formModalTitle" class="text-lg font-medium">Create student</h2>
+        <button id="closeFormModalBtn" class="text-gray-400 hover:text-gray-600 text-xl leading-none">&times;</button>
+      </div>
+
+      <form id="studentForm" class="space-y-4">
+        <input type="hidden" id="studentId" />
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm mb-1">Name</label>
+            <input id="name" type="text" required class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm" />
+          </div>
+          <div>
+            <label class="block text-sm mb-1">Age</label>
+            <input id="age" type="number" required class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm" />
+          </div>
+          <div>
+            <label class="block text-sm mb-1">Phone</label>
+            <input id="phone" type="text" required class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm" />
+          </div>
+          <div>
+            <label class="block text-sm mb-1">Email</label>
+            <input id="email" type="email" required class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm" />
+          </div>
+          <div>
+            <label class="block text-sm mb-1">Gender</label>
+            <select id="gender" required class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm">
+              <option value="">Select</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm mb-1">Address</label>
+            <input id="address" type="text" required class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm mb-1">Profile picture</label>
+          <input id="profile_pic" type="file" accept="image/*" class="w-full text-sm" />
+        </div>
+
+        <div class="flex items-center gap-3 pt-2">
+          <button type="submit" id="submitBtn"
+            class="bg-gray-900 text-white text-sm px-4 py-2 rounded-md hover:bg-gray-700">
+            Save
+          </button>
+          <span id="formMsg" class="text-sm"></span>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- View modal -->
+  <div id="viewModalBackdrop" class="hidden fixed inset-0 bg-black/40 flex items-center justify-center p-4 z-50">
+    <div class="bg-white rounded-lg w-full max-w-md p-5">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-lg font-medium">Student details</h2>
+        <button id="closeViewModalBtn" class="text-gray-400 hover:text-gray-600 text-xl leading-none">&times;</button>
+      </div>
+      <div id="viewModalContent" class="space-y-3 text-sm"></div>
+    </div>
+  </div>
+
+<script>
+  // Change this to match your running server
+  const API_ORIGIN = "http://localhost:3000";
+  const API_BASE = `${API_ORIGIN}/api/students`;
+
+  const fields = ["name", "age", "phone", "email", "gender", "address"];
+
+  const searchInput = document.getElementById("searchInput");
+  const refreshBtn = document.getElementById("refreshBtn");
+  const createBtn = document.getElementById("createBtn");
+  const listEl = document.getElementById("studentList");
+
+  const formModalBackdrop = document.getElementById("formModalBackdrop");
+  const formModalTitle = document.getElementById("formModalTitle");
+  const closeFormModalBtn = document.getElementById("closeFormModalBtn");
+  const form = document.getElementById("studentForm");
+  const studentIdInput = document.getElementById("studentId");
+  const submitBtn = document.getElementById("submitBtn");
+  const formMsg = document.getElementById("formMsg");
+
+  const viewModalBackdrop = document.getElementById("viewModalBackdrop");
+  const closeViewModalBtn = document.getElementById("closeViewModalBtn");
+  const viewModalContent = document.getElementById("viewModalContent");
+
+  let allStudents = [];
+
+  // ---- data ----
+
+  async function fetchStudents() {
+    listEl.innerHTML = `<p class="text-sm text-gray-500">Loading...</p>`;
+    try {
+      const res = await fetch(API_BASE);
+      allStudents = await res.json();
+      renderList();
+    } catch (err) {
+      listEl.innerHTML = `<p class="text-sm text-red-600">Could not load students. Is the server running?</p>`;
+    }
+  }
+
+  function renderList() {
+    const term = searchInput.value.trim().toLowerCase();
+    const students = term
+      ? allStudents.filter(s =>
+          s.name?.toLowerCase().includes(term) || s.email?.toLowerCase().includes(term))
+      : allStudents;
+
+    if (!students.length) {
+      listEl.innerHTML = `<p class="text-sm text-gray-500">No students found.</p>`;
+      return;
+    }
+
+    listEl.innerHTML = students.map(s => `
+      <div class="flex items-center gap-4 bg-white border border-gray-200 rounded-lg p-4">
+        <img src="${s.profile_pic ? API_ORIGIN + '/' + s.profile_pic : 'https://placehold.co/56x56?text=%20'}"
+             class="w-14 h-14 rounded-full object-cover border border-gray-200" />
+
+        <div class="flex-1 min-w-0">
+          <p class="font-medium truncate">${s.name}</p>
+          <p class="text-sm text-gray-500 truncate">${s.email}</p>
+        </div>
+
+        <div class="flex gap-2 shrink-0">
+          <button data-id="${s._id}" class="viewBtn text-sm px-3 py-1.5 rounded-md border border-gray-300 hover:bg-gray-100">View</button>
+          <button data-id="${s._id}" class="editBtn text-sm px-3 py-1.5 rounded-md border border-gray-300 hover:bg-gray-100">Edit</button>
+          <button data-id="${s._id}" class="deleteBtn text-sm px-3 py-1.5 rounded-md border border-red-200 text-red-600 hover:bg-red-50">Delete</button>
+        </div>
+      </div>
+    `).join("");
+  }
+
+  listEl.addEventListener("click", (e) => {
+    const id = e.target.dataset.id;
+    if (!id) return;
+    const student = allStudents.find(s => s._id === id);
+
+    if (e.target.classList.contains("viewBtn")) openViewModal(student);
+    if (e.target.classList.contains("editBtn")) openFormModal(student);
+    if (e.target.classList.contains("deleteBtn")) deleteStudent(id);
+  });
+
+  searchInput.addEventListener("input", renderList);
+  refreshBtn.addEventListener("click", fetchStudents);
+
+  // ---- create / edit modal ----
+
+  function openFormModal(student) {
+    form.reset();
+    formMsg.textContent = "";
+
+    if (student) {
+      studentIdInput.value = student._id;
+      fields.forEach(f => document.getElementById(f).value = student[f] ?? "");
+      formModalTitle.textContent = "Edit student";
+      submitBtn.textContent = "Update";
+    } else {
+      studentIdInput.value = "";
+      formModalTitle.textContent = "Create student";
+      submitBtn.textContent = "Save";
+    }
+
+    formModalBackdrop.classList.remove("hidden");
+  }
+
+  function closeFormModal() {
+    formModalBackdrop.classList.add("hidden");
+  }
+
+  createBtn.addEventListener("click", () => openFormModal(null));
+  closeFormModalBtn.addEventListener("click", closeFormModal);
+  formModalBackdrop.addEventListener("click", (e) => {
+    if (e.target === formModalBackdrop) closeFormModal();
+  });
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const id = studentIdInput.value;
+    const formData = new FormData();
+    fields.forEach(f => formData.append(f, document.getElementById(f).value));
+
+    const fileInput = document.getElementById("profile_pic");
+    if (fileInput.files[0]) {
+      formData.append("profile_pic", fileInput.files[0]);
+    }
+
+    const url = id ? `${API_BASE}/${id}` : API_BASE;
+    const method = id ? "PUT" : "POST";
+
+    submitBtn.disabled = true;
+    formMsg.textContent = "Saving...";
+    formMsg.className = "text-sm text-gray-500";
+
+    try {
+      const res = await fetch(url, { method, body: formData });
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.message || data.server_error || data.multer_error || "Something went wrong");
+      }
+
+      closeFormModal();
+      fetchStudents();
+    } catch (err) {
+      formMsg.textContent = err.message;
+      formMsg.className = "text-sm text-red-600";
+    } finally {
+      submitBtn.disabled = false;
+    }
+  });
+
+  // ---- view modal ----
+
+  function openViewModal(student) {
+    viewModalContent.innerHTML = `
+      <div class="flex items-center gap-4 mb-2">
+        <img src="${student.profile_pic ? API_ORIGIN + '/' + student.profile_pic : 'https://placehold.co/64x64?text=%20'}"
+             class="w-16 h-16 rounded-full object-cover border border-gray-200" />
+        <p class="font-medium text-base">${student.name}</p>
+      </div>
+      <p><span class="text-gray-500">Email:</span> ${student.email}</p>
+      <p><span class="text-gray-500">Age:</span> ${student.age}</p>
+      <p><span class="text-gray-500">Phone:</span> ${student.phone}</p>
+      <p><span class="text-gray-500">Gender:</span> ${student.gender}</p>
+      <p><span class="text-gray-500">Address:</span> ${student.address}</p>
+    `;
+    viewModalBackdrop.classList.remove("hidden");
+  }
+
+  function closeViewModal() {
+    viewModalBackdrop.classList.add("hidden");
+  }
+
+  closeViewModalBtn.addEventListener("click", closeViewModal);
+  viewModalBackdrop.addEventListener("click", (e) => {
+    if (e.target === viewModalBackdrop) closeViewModal();
+  });
+
+  // ---- delete ----
+
+  async function deleteStudent(id) {
+    if (!confirm("Delete this student?")) return;
+    try {
+      const res = await fetch(`${API_BASE}/${id}`, { method: "DELETE" });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "Delete failed");
+      fetchStudents();
+    } catch (err) {
+      alert(err.message);
+    }
+  }
+
+  fetchStudents();
+</script>
+
+</body>
+</html>
