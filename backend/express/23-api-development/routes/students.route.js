@@ -59,7 +59,22 @@ const validateObjectId = (req, res, next) => {
 // get all students
 router.get("/", async (req, res) => {
   try {
-    const students = await Student.find();
+
+    // Get the search query parameter from the request url, defaulting to an empty string if not provided
+    const search = req.query.search || "";
+
+    // Create a query object that uses the $or operator to search for students whose first name, last name, or email matches the search term (case-insensitive)
+    // Learn it in mongodb
+    const query = {
+      $or: [
+        { name: { $regex: search, $options: "i" } },
+        { email: { $regex: search, $options: "i" } },
+      ],
+    };
+
+    // passing query to find method to filter students based on search criteria
+    const students = await Student.find(query);
+
     res.status(200).json(students);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -91,7 +106,6 @@ router.post("/", upload.single("profile_pic"), async (req, res) => {
     }
     const savedNewStudent = await newStudent.save();
     res.status(201).json(savedNewStudent);
-    
   } catch (error) {
     // Problem :
     // Image uploaded successfully
@@ -351,7 +365,6 @@ router.put(
 
 */
 
-
 // delete a student
 router.delete("/:id", validateObjectId, async (req, res) => {
   try {
@@ -384,7 +397,6 @@ router.delete("/:id", validateObjectId, async (req, res) => {
     }
 
     res.json({ message: "Student deleted" });
-
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
