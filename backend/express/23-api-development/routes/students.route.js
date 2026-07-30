@@ -59,7 +59,6 @@ const validateObjectId = (req, res, next) => {
 // get all students
 router.get("/", async (req, res) => {
   try {
-
     // Get the search query parameter from the request url, defaulting to an empty string if not provided
     const search = req.query.search || "";
 
@@ -72,10 +71,25 @@ router.get("/", async (req, res) => {
       ],
     };
 
-    // passing query to find method to filter students based on search criteria
-    const students = await Student.find(query);
+    // Pagination logic : https://localhost:3000/students?page=1&limit=3
+    // This topic belongs to mongodb
+    const page = parseInt(req.query.page) || 1; // Default to page 1 if not provided
+    const limit = parseInt(req.query.limit) || 5; // Default to 5 students per page if not provided
+    const skip = (page - 1) * limit;
 
-    res.status(200).json(students);
+    const totalStudents = await Student.countDocuments(query); // Count total students matching the query
+    const totalPages = Math.ceil(totalStudents / limit); // Calculate total pages based on total students and limit
+
+    // passing query to find method to filter students based on search criteria
+    const students = await Student.find(query).skip(skip).limit(limit);
+
+    res.status(200).json({
+      totalStudents,
+      totalPages,
+      limit,
+      currentPage: page,
+      students,
+    });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
