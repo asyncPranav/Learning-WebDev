@@ -11,6 +11,10 @@ const path = require("path");
 
 const PORT = process.env.PORT;
 
+// this code is written in jwt tutorial lecture
+const auth = require("./middlewares/auth");
+const usersRouter = require("./routes/users.route");
+
 // Connect to MongoDB
 connectDB();
 
@@ -27,6 +31,12 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // use cors middleware to allow cross-origin requests
 app.use(cors());
+
+// this code is written in jwt tutorial lecture
+// use users router
+// this order is important: user register/login -> auth middleware -> students routes. This ensures that only authenticated users can access the students routes after registering or logging in.
+app.use("/api/users", usersRouter);
+app.use(auth); // it applies the auth middleware to all routes defined after this line, ensuring that only authenticated users can access those routes.
 
 // use students router
 app.use("/api/students", studentsRouter);
