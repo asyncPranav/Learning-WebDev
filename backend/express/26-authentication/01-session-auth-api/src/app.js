@@ -6,6 +6,7 @@ import notFound from "./middlewares/notFound.middleware.js";
 
 // routers
 import userRouter from "./routes/user.route.js";
+import taskRouter from "./routes/task.route.js";
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // routes
 app.use("/api/users", userRouter);
+app.use("/api/tasks", taskRouter);
 
 // 404 - not found middleware
 app.use(notFound);
