@@ -2,7 +2,7 @@ import express from "express";
 
 import validateObjectId from "../middlewares/validateObjectId.middleware.js";
 import createUserValidator from "../validators/createUser.validator.js";
-import createUserValidate from "../middlewares/createUserValidate.middleware.js";
+import validate from "../middlewares/validate.middleware.js";
 import updateUserValidator from "../validators/updateUser.validator.js";
 
 import {
@@ -18,12 +18,12 @@ const router = express.Router();
 router
   .route("/")
   .get(getAllUsers)
-  .post(createUserValidator, createUserValidate, createUser);
+  .post(createUserValidator, validate, createUser);
 
 router
   .route("/:id")
   .get(validateObjectId, getUser)
-  .patch(validateObjectId, updateUserValidator, updateUser)
+  .patch(validateObjectId, updateUserValidator, validate, updateUser)
   .delete(validateObjectId, deleteUser);
 
 export default router;
