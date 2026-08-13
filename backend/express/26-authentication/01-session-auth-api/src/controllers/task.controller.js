@@ -4,7 +4,7 @@ import ApiError from "../utils/ApiError.js";
 
 const getAllTasks = async (req, res, next) => {
   try {
-    const tasks = await Task.find();
+    const tasks = await Task.find({ userId: req.user._id }); // Fetch tasks that belong to the authenticated user
 
     res.status(200).json({
       status: "success",

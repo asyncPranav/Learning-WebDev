@@ -4,6 +4,7 @@ import express from "express";
 import validateObjectId from "../middlewares/validateObjectId.middleware.js"
 import validate from "../middlewares/validate.middleware.js"
 import authenticate from "../middlewares/auth.middleware.js";
+import checkTaskOwnership from "../middlewares/taskOwnership.middleware.js";
 
 // Validators
 import createTaskValidator from "../validators/createTask.validator.js";
@@ -26,8 +27,8 @@ router
 
 router
   .route("/:id")
-  .get(authenticate, validateObjectId, getTask)
-  .patch(authenticate, validateObjectId, updateTaskValidator, validate, updateTask)
-  .delete(authenticate, validateObjectId, deleteTask);
+  .get(authenticate, validateObjectId, checkTaskOwnership, getTask)
+  .patch(authenticate, validateObjectId, checkTaskOwnership, updateTaskValidator, validate, updateTask)
+  .delete(authenticate, validateObjectId, checkTaskOwnership, deleteTask);
 
 export default router;
