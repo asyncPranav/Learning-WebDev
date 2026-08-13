@@ -21,13 +21,6 @@ const updateTaskValidator = [
     .optional()
     .isBoolean()
     .withMessage("Completed must be a boolean value"),
-
-  body("userId")
-    .optional()
-    .notEmpty()
-    .withMessage("User ID is required")
-    .isMongoId()
-    .withMessage("Invalid User ID format"),
 ];
 
 export default updateTaskValidator;

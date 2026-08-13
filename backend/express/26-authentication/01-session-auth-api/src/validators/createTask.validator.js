@@ -19,12 +19,6 @@ const createTaskValidator = [
     .optional()
     .isBoolean()
     .withMessage("Completed must be a boolean value"),
-
-  body("userId")
-    .notEmpty()
-    .withMessage("User ID is required")
-    .isMongoId()
-    .withMessage("Invalid User ID format"),
 ];
 
 export default createTaskValidator;

@@ -35,19 +35,13 @@ const getTask = async (req, res, next) => {
 
 const createTask = async (req, res, next) => {
   try {
-    const { title, description, completed, userId } = req.body;
-
-    const user = await User.findById(userId);
-
-    if (!user) {
-      return next(new ApiError(404, "User not found"));
-    }
+    const { title, description, completed } = req.body;
 
     const task = await Task.create({
       title,
       description,
       completed,
-      userId,
+      userId: req.user._id,
     });
 
     res.status(201).json({
@@ -62,7 +56,7 @@ const createTask = async (req, res, next) => {
 
 const updateTask = async (req, res, next) => {
   try {
-    const { title, description, completed, userId } = req.body;
+    const { title, description, completed } = req.body;
 
     const updatedData = {};
 
@@ -76,16 +70,6 @@ const updateTask = async (req, res, next) => {
 
     if (completed !== undefined) {
       updatedData.completed = completed;
-    }
-
-    if (userId !== undefined) {
-      const user = await User.findById(userId);
-
-      if (!user) {
-        return next(new ApiError(404, "User not found"));
-      }
-
-      updatedData.userId = userId;
     }
 
     if (Object.keys(updatedData).length === 0) {
