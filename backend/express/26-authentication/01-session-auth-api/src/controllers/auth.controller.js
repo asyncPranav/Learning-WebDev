@@ -64,7 +64,6 @@ const login = async (req, res, next) => {
 
     // 3. Create authenticated session
     req.session.userId = user._id;
-    
 
     // Temporary response — session comes next
     res.status(200).json({
@@ -85,6 +84,24 @@ const login = async (req, res, next) => {
   }
 };
 
+const logout = (req, res, next) => {
+  // 1. Destroy the session on the server side
+  req.session.destroy((err) => {
+    if (err) {
+      return next(err);
+    }
+
+    // 2. Clear the session cookie on the client side - assuming the cookie name is 'connect.sid' (default for express-session)
+    res.clearCookie("connect.sid");
+
+    // 3. Send a response indicating successful logout
+    res.status(200).json({
+      status: "success",
+      message: "Logged out successfully",
+    });
+  });
+};
+
 const getMe = async (req, res, next) => {
   try {
     res.status(200).json({
@@ -103,4 +120,4 @@ const getMe = async (req, res, next) => {
   }
 };
 
-export { register, login, getMe };
+export { register, login, logout, getMe };
