@@ -276,5 +276,78 @@ const updateUserRole = async (req, res, next) => {
     next(error);
   }
 };
+/*
+PATCH /api/users/:id/role
+        ↓
+authenticate
+        ↓
+Is user authenticated?
+       / \
+     NO   YES
+     ↓     ↓
+   401   req.user
+           ↓
+    authorize("admin")
+           ↓
+    Is req.user an admin?
+          / \
+        NO   YES
+        ↓     ↓
+      403   validateObjectId
+              ↓
+       Is ObjectId valid?
+            / \
+          NO   YES
+          ↓     ↓
+       ApiError  updateRoleValidator
+         400          ↓
+          ↓      body("role")
+    errorHandler      ↓
+                 trim()
+                    ↓
+               notEmpty()
+                    ↓
+               Is role valid?
+             /            \
+           NO              YES
+           ↓                ↓
+       Validation        continue
+         error              ↓
+           ↓             validate
+          400                ↓
+           ↓         Validation errors?
+      errorHandler       /          \
+                       YES           NO
+                       ↓              ↓
+                      400      updateUserRole
+                       ↓              ↓
+                 errorHandler   destructure role
+                                      ↓
+                               const { role }
+                                      ↓
+                              req.body.role
+                                      ↓
+                         User.findByIdAndUpdate()
+                                      ↓
+                                req.params.id
+                                  { role }
+                                      ↓
+                                MongoDB
+                                      ↓
+                                User found?
+                                /        \
+                              NO          YES
+                              ↓            ↓
+                          ApiError     updatedUser
+                            404             ↓
+                             ↓        select("-password")
+                       errorHandler         ↓
+                                           200
+                                            ↓
+                                    Send updated user
+*/
+
+
+
 
 export { getAllUsers, getUser, createUser, updateUser, deleteUser, updateUserRole };
