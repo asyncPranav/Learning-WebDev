@@ -4,6 +4,8 @@ import validateObjectId from "../middlewares/validateObjectId.middleware.js";
 import createUserValidator from "../validators/createUser.validator.js";
 import validate from "../middlewares/validate.middleware.js";
 import updateUserValidator from "../validators/updateUser.validator.js";
+import authenticate from "../middlewares/auth.middleware.js";
+import authorize from "../middlewares/authorize.middleware.js";
 
 import {
   getAllUsers,
@@ -17,7 +19,7 @@ const router = express.Router();
 
 router
   .route("/")
-  .get(getAllUsers)
+  .get(authenticate, authorize("admin"), getAllUsers)
   .post(createUserValidator, validate, createUser);
 
 router
