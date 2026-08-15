@@ -245,4 +245,36 @@ findByIdAndDelete()
 ApiError  deletedUser
 */
 
-export { getAllUsers, getUser, createUser, updateUser, deleteUser };
+
+
+
+const updateUserRole = async (req, res, next) => {
+  try {
+    const { role } = req.body;
+
+    const updatedUser = await User.findByIdAndUpdate(
+      req.params.id,
+      { role },
+      {
+        new: true,
+        runValidators: true,
+      },
+    ).select("-password");
+
+    if (!updatedUser) {
+      return next(new ApiError(404, "User not found"));
+    }
+
+    res.status(200).json({
+      status: "success",
+      message: "User role updated successfully",
+      data: {
+        user: updatedUser,
+      },
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export { getAllUsers, getUser, createUser, updateUser, deleteUser, updateUserRole };
