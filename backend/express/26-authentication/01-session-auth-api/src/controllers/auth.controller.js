@@ -9,7 +9,7 @@ const register = async (req, res, next) => {
     // 1. Check if the email already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return next(new ApiError("Email already exists", 400));
+      return next(new ApiError(400, "Email already exists"));
     }
 
     // 2. Hash the password
@@ -40,7 +40,7 @@ const register = async (req, res, next) => {
   } catch (error) {
     // Handle MongoDB duplicate email race condition
     if (error.code === 11000) {
-      return next(new ApiError("Email already exists", 400));
+      return next(new ApiError(400, "Email already exists"));
     }
     next(error);
   }
