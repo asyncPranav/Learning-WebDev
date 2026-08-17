@@ -211,6 +211,11 @@ errorHandler
 
 const deleteUser = async (req, res, next) => {
   try {
+    // This protect admin to delete theirself
+    if (req.user._id.toString() === req.params.id) {
+      return next(new ApiError(403, "You can't change your own role"));
+    }
+
     const deletedUser = await User.findByIdAndDelete(req.params.id).select(
       "-password",
     );
@@ -245,12 +250,14 @@ findByIdAndDelete()
 ApiError  deletedUser
 */
 
-
-
-
 const updateUserRole = async (req, res, next) => {
   try {
     const { role } = req.body;
+
+    // This protect admin to update theirself
+    if (req.user._id.toString() === req.params.id) {
+      return next(new ApiError(403, "You can't change your own role"));
+    }
 
     const updatedUser = await User.findByIdAndUpdate(
       req.params.id,
@@ -347,7 +354,11 @@ Is user authenticated?
                                     Send updated user
 */
 
-
-
-
-export { getAllUsers, getUser, createUser, updateUser, deleteUser, updateUserRole };
+export {
+  getAllUsers,
+  getUser,
+  createUser,
+  updateUser,
+  deleteUser,
+  updateUserRole,
+};
