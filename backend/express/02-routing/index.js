@@ -17,14 +17,6 @@ app.get("/gallery", (req, res) => {
   res.send("<h1>Gallery page</h1>");
 });
 
-
-
-
-
-
-
-
-
 /*
   Express Route Example: Handling Specific vs General Routes
 
@@ -54,12 +46,6 @@ app.get("/about/user", (req, res) => {
   res.send("<h1>User page</h1>");
 });
 
-
-
-
-
-
-
 // routes can have dot dollar and other special characters in the path
 // This is useful when URLs need to include special characters for formatting, pricing, or usernames
 app.get("/random.page", (req, res) => {
@@ -73,12 +59,6 @@ app.get("/price$100", (req, res) => {
 app.get("/person@name", (req, res) => {
   res.send("<h1>Person page</h1>");
 });
-
-
-
-
-
-
 
 /*
   Express.js Route Parameters – Beginner-Friendly Guide
@@ -117,13 +97,6 @@ app.get("/college/:collegeid-:studentid", (req, res) => {
   res.send(req.params);
 });
 
-
-
-
-
-
-
-
 /*
   Express Query Parameters: Capturing Data from the URL
 
@@ -155,12 +128,6 @@ app.get("/search", (req, res) => {
   res.send(req.query); // query is an object containing the query parameters
 });
 
-
-
-
-
-
-
 /*
   Express Catch-All Route: Handling 404 Not Found
 
@@ -185,13 +152,6 @@ app.get("/search", (req, res) => {
   });
 */
 
-
-
-
-
-
-
-
 /*
   Express.js 404 Error Handling using Middleware
 
@@ -210,6 +170,58 @@ app.get("/search", (req, res) => {
 app.use((req, res) => {
   res.status(404).send("<h1>404 Not Found</h1>");
 });
+
+
+
+
+
+
+// ---> Some advance routing concepts
+app.get("/abc", (req, res) => {
+  res.send("Normal /abc route");
+});
+
+// ? is used for optional characters in the route path. 
+// It means that the character before "?" can appear 0 or 1 time in the URL.
+// Example: we can visit both "/abc" and "/ac" and they will match this route.
+app.get("/ab?c", (req, res) => {
+  res.send("Optional /ab?c route");
+});
+
+// + is used for one or more occurrences of the character before it in the route path.
+// Example: we can visit "/abc", "/abbc", "/abbbc", etc., and they will match this route.
+app.get("/ab+c", (req, res) => {
+  res.send("One or more occurrences of 'b' in route using +");
+});
+
+// * is used for zero or more occurrences of the character before it in the route path.
+// Example: we can visit "/abcd", "/abxcd", "/ab123cd", etc., and they will match this route.
+app.get("/ab*cd", (req, res) => {
+  res.send("anything in between 'ab' and 'cd' using *");
+});
+
+// () is used for grouping characters in the route path.
+// and ? is used for optional characters in the route path.
+// Example: we can visit "/ad" or "/abcd" and they will match this route.
+app.get("/a(bc)?d", (req, res) => {
+  res.send("combination of () and ? in the route path");
+});
+
+// Here we used a combination of + and () in the route path.
+// It means that the group "bc" can appear one or more times in the URL.
+// Example: we can visit "/abcd", "/abcbcd", "/abcbcbcd", etc., and they will match this route.
+app.get("/a(bc)+d", (req, res) => {
+  res.send("combination of + and () in the route path");
+});
+
+// Here we passed a regex as the route path. 
+// The regex matches any URL that ends with "fly".
+// Example: we can visit "/butterfly", "/dragonfly", etc., and they will match this route.
+app.get("/*fly$/", (req, res) => {
+  res.send("regex route for URLs ending with 'fly'");
+});
+
+
 
 // start the server
 app.listen(PORT, () => {
