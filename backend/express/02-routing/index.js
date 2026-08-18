@@ -222,6 +222,13 @@ app.get("/*fly$/", (req, res) => {
 });
 
 
+// Here we used app.all() to handle all HTTP methods (GET, POST, PUT, DELETE, etc.) for the "/maintenance" route.
+// This is useful for maintenance mode, where you want to respond the same way regardless of the request method.                                                                                                                                                                                                                                                                                                                                                    
+app.all("/maintenance", (req, res) => {
+  res.send("we are under maintenance, please try again later");
+})
+
+
 
 // start the server
 app.listen(PORT, () => {
