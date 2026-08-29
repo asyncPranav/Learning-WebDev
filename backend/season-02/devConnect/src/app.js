@@ -107,7 +107,9 @@ app.get("/user", async (req, res) => {
 // Update /user/:userId - update a user by userId
 app.patch("/user/:userId", async (req, res) => {
   try {
-    const user = await User.findByIdAndUpdate(req.params.userId, req.body);
+    const user = await User.findByIdAndUpdate(req.params.userId, req.body, {
+      runValidators: true,
+    });
     if (!user) {
       return res.status(404).json({
         success: false,
