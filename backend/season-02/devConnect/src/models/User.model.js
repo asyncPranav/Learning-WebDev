@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import validator from "validator";
 
 const userSchema = new mongoose.Schema(
   {
@@ -30,16 +31,36 @@ const userSchema = new mongoose.Schema(
       unique: true,
       lowercase: true,
       trim: true,
-      match: [
-        /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-        "Please provide a valid email address",
-      ],
+      // match: [
+      //   /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+      //   "Please provide a valid email address",
+      // ],
+      validate: {
+        validator: function (email) {
+          return validator.isEmail(email);
+        },
+        message: "Please provide a valid email address",
+      },
     },
 
     password: {
       type: String,
       required: [true, "Password is required"],
-      minlength: [8, "Password must be at least 8 characters"],
+      // minlength: [8, "Password must be at least 8 characters"],
+      validate: {
+        validator: function(password) {
+          console.log(password);
+          // return validator.isStrongPassword(password)  // here it applies default options of isStrongPassword method, but we can also customize it as below
+          return validator.isStrongPassword(password, {
+            minLength: 8,
+            minLowercase: 1,
+            minUppercase: 0,
+            minNumbers: 1,
+            minSymbols: 1,
+          });
+        },
+        message: "Password must be at least 8 characters long and include at least one lowercase letter, one number, and one symbol",
+      }
     },
 
     gender: {
@@ -82,6 +103,12 @@ const userSchema = new mongoose.Schema(
       default: function () {
         return `https://api.dicebear.com/10.x/glyphs/svg?seed=${this.username}`;
       },
+      validate: {
+        validator: function(url) {
+          return validator.isURL(url);
+        },
+        message: "Please provide a valid photo URL",
+      }
     },
   },
   {

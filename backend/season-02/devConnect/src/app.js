@@ -94,7 +94,7 @@ app.get("/user", async (req, res) => {
       user,
     });
   } catch (error) {
-    return res.send(500).json({
+    return res.status(500).json({
       success: false,
       message: "Error fetching user",
       error: error.message,
@@ -107,15 +107,41 @@ app.get("/user", async (req, res) => {
 // Update /user/:userId - update a user by userId
 app.patch("/user/:userId", async (req, res) => {
   try {
+    // Fields that users are allowed to update
+    const allowedUpdates = ["age", "about", "skills", "photoUrl"];
+
+    // Get all fields sent by the user
+    const requestedUpdates = Object.keys(req.body);
+
+    // Check whether every requested field is allowed
+    const isValidUpdate = requestedUpdates.every((field) =>
+      allowedUpdates.includes(field),
+    );
+
+    // Write together the above two lines in a single line
+    // const isValidUpdate = Object.keys(req.body).every((field) =>
+    //   ["age", "about", "skills", "photoUrl"].includes(field),
+    // );
+
+    // If user tries to update a restricted field
+    if (!isValidUpdate) {
+      throw new Error(
+        "Invalid updates! You can only update age, about, skills, and photoUrl.",
+      );
+    }
+
     const user = await User.findByIdAndUpdate(req.params.userId, req.body, {
+      new: true,
       runValidators: true,
     });
+
     if (!user) {
       return res.status(404).json({
         success: false,
         message: "User not found",
       });
     }
+
     return res.status(200).json({
       success: true,
       message: "User updated successfully",
